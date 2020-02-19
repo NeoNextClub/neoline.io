@@ -1,0 +1,123 @@
+header {
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    img {
+        max-height: 370px;
+        height: 100%;
+        width: 100%;
+    }
+    p {
+        top: calc(50% - 32px);
+        position: absolute;
+        font-size: 32px;
+        color: white;
+        margin: auto;
+    }
+}
+
+article {
+    h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    section {
+        width: 100%;
+        padding: 40px;
+        div {
+            text-align: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+        p {
+            max-width: 400px;
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+            margin: 20px;
+        }
+        span {
+            color: #333333;
+            font-size: 20px;
+        }
+        span.bold {
+            color: black;
+            font-weight: bold;
+        }
+        img {
+            width: 100%;
+            max-width: 628px;
+            vertical-align: middle
+        }
+    }
+    section:nth-child(2) {
+        img {
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+    }
+    section:nth-child(3) {
+        text-align: left;
+    }
+    section:nth-child(4) {
+        text-align: left;
+        p {
+        }
+    }
+
+    section:nth-child(5) {
+        text-align: left;
+        p {
+            vertical-align: middle;
+            img {
+                width: 36px;
+            }
+        }
+    }
+    section:nth-child(2n + 1) {
+        background: #FAFBFC;
+    }
+}
+
+.bottom-tip {
+    text-align: center;
+    bottom: 15px;
+    float: right;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.mobile {
+    display: none;
+}
+
+@media screen and (max-width: 1199px)  {
+    header {
+        p {
+            font-size: 20px;
+            top: 45%;
+        }
+    }
+    article {
+        section {
+            p {
+                font-size: 15px;
+                margin: 15px;
+                max-width: 1000px;
+                &.mobile {
+                    display: inline-block
+                }
+                &.pc {
+                    display: none;
+                }
+            }
+        }
+    }
+
+}
+

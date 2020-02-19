@@ -1,0 +1,2844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href=" /favicon.ico" />
+    <title>Documentation - NEOLine dAPI</title>
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="/assets/images/dapi/logo.png" alt="">
+        <h1>dAPI documentation</h1>
+        <img src="/assets/images/dapi/menu.svg" alt="menu" class="menu">
+    </header>
+    <aside class="catalogue normal">
+        <section class="aside-item">
+            <h4 class="getting-start">Getting Started<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <div class="item-content getting-start">
+                <a href="#startExample">Example</a>
+            </div>
+        </section>
+        <section class="aside-item">
+            <h4 class="read-methods">Read Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <div class="item-content read-methods">
+                <a href="#getProvider">getProvider</a>
+                <a href="#getNetworks">getNetworks</a>
+                <a href="#getAccount">getAccount</a>
+                <a href="#getPublicKey">getPublicKey</a>
+                <a href="#getBalance">getBalance</a>
+                <a href="#getStorage">getStorage</a>
+                <a href="#invokeRead">invokeRead</a>
+                <a href="#verifyMessage">verifyMessage</a>
+                <a href="#getBlock">getBlock</a>
+                <a href="#getTransaction">getTransaction</a>
+                <a href="#getApplicationLog">getApplicationLog</a>
+            </div>
+        </section>
+        <section class="aside-item">
+            <h4 class="write-methods">Write Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <div class="item-content write-methods">
+                <a href="#send">send</a>
+                <a href="#invoke">invoke</a>
+                <a href="#invokeMulti">invokeMulti</a>
+                <a href="#signMessage">signMessage</a>
+                <a href="#deploy">deploy</a>
+            </div>
+        </section>
+        <section class="aside-item">
+            <h4 class="events">Events<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <div class="item-content events">
+                <a href="#READY">READY</a>
+                <a href="#ACCOUNT_CHANGED">ACCOUNT_CHANGED</a>
+                <a href="#CONNECTED">CONNECTED</a>
+                <a href="#DISCONNECTED">DISCONNECTED</a>
+                <a href="#NETWORK_CHANGED">NETWORK_CHANGED</a>
+                <a href="#BLOCK_HEIGHT_CHANGED">BLOCK_HEIGHT_CHANGED</a>
+                <a href="#TRANSACTION_CONFIRMED">TRANSACTION_CONFIRMED</a>
+            </div>
+        </section>
+        <section class="aside-item">
+            <h4 class="events-methods">Event Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <div class="item-content events-methods">
+                <a href="#addEventListener">addEventListener</a>
+                <a href="#removeEventListener">removeEventListener</a>
+            </div>
+        </section>
+        <section class="aside-item">
+            <h4 class="errors">Errors<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <div class="item-content errors">
+                <a href="#Errors">Errors</a>
+            </div>
+        </section>
+    </aside>
+    <article class="content">
+            <section id="startExample" class="content-item">
+                    <div class="overview">
+                        <h4>Example</h4>
+                    </div>
+                    <div class="examples">
+                        <pre><code class="language-js">
+window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
+  const neoline = new NEOLine.Init();
+  neoline.getAccount()
+  .then(account => console.log(account))
+});
+
+        </code></pre>
+                    </div>
+                </section>
+        <section id="getProvider" class="content-item">
+            <div class="overview">
+                <h4>getProvider</h4>
+                <p>Returns information about the dAPI provider, including who this provider is, the version of their
+                    dAPI, and the NEP that the interface is compatible with.</p>
+                <h5>Input Arguments</h5>
+                <p>None</p>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>name: string</code></td>
+                            <td>The name of the wallet provider</td>
+                        </tr>
+                        <tr>
+                            <td><code>website: string</code></td>
+                            <td>The website of the wallet provider</td>
+                        </tr>
+                        <tr>
+                            <td><code>version: string</code></td>
+                            <td>The version of the dAPI that the the wallet supports</td>
+                        </tr>
+                        <tr>
+                            <td><code>compatibility: string[]</code></td>
+                            <td>A list of all applicable NEPs which the wallet provider supports</td>
+                        </tr>
+                        <tr>
+                            <!-- <td><code>extra: <a href="#getProvider-Extra"><img class="tip" src="/assets/images/dapi/i.svg" alt="i"></a>ExtraObject</code></td> -->
+                            <td><code>extra: object</code></td>
+                            <td>This object can contain any attributes specific to the dapi provider, such as an app theme</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <p id="getProvider-Extra">ExtraObject</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>theme: string</code></td>
+                            <td>UI theme of the provider</td>
+                        </tr>
+                        <tr>
+                            <td><code>currency: string</code></td>
+                            <td>Base currency set by user</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getProvider()
+.then(provider => {
+  const {
+    name,
+    website,
+    version,
+    compatibility,
+    extra
+  } = provider;
+
+  console.log('Provider name: ' + name);
+  console.log('Provider website: ' + website);
+  console.log('Provider dAPI version: ' + version);
+  console.log('Provider dAPI compatibility: ' + JSON.stringify(compatibility));
+  console.log('Extra provider specific atributes: ' + JSON.stringify(compatibility));
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp.');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  name: 'Awesome Wallet',
+  website: 'https://www.neoline.cn/',
+  version: '1.0.0',
+  compatibility: [
+    'NEP-14',
+    'NEP-23',
+    'NEP-29'
+  ],
+  extra: {
+    theme: 'Dark Mode',
+    currency: 'USD'
+  }
+}
+</code></pre>
+            </div>
+        </section>
+        <section id="getNetworks" class="content-item">
+            <div class="overview">
+                <h4>getNetworks</h4>
+                <p>Returns the networks the wallet provider has available to connect to, along with the default network
+                    the wallet is currently set to.</p>
+                <h5>Input Arguments</h5>
+                <p>None</p>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>networks: string[]</code></td>
+                            <td>Array of network names the wallet provider has available for the dapp developer to connect to</td>
+                        </tr>
+                        <tr>
+                            <td><code>defaultNetwork: string</code></td>
+                            <td>Network the wallet is currently set to</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getNetworks()
+.then(result => {
+  const {
+    networks,
+    defaultNetwork
+  } = result;
+
+  console.log('Networks: ' + networks);
+  // eg. ["MainNet", "TestNet", "PrivateNet"]
+
+  console.log('Default network: ' + defaultNetwork);
+  // eg. "MainNet"
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  networks: ["MainNet", "TestNet"],
+  defaultNetwork: "TestNet"
+}
+</code></pre>
+            </div>
+        </section>
+        <section id="getAccount" class="content-item">
+            <div class="overview">
+                <h4>getAccount</h4>
+                <p>Return the Account that is currently connected to the dApp.</p>
+                <h5>Input Arguments</h5>
+                <p>None</p>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>Address of the connected account</td>
+                        </tr>
+                        <tr>
+                            <td><code>label?: string</code></td>
+                            <td>A label the users has set to identify their wallet</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getAccount()
+.then(account => {
+  const {
+    address,
+    label
+  } = account;
+
+  console.log('Provider address: ' + address);
+  console.log('Provider account label (Optional): ' + label);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  address: 'AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo',
+  label: 'NEOLine'
+}
+</code></pre>
+            </div>
+        </section>
+        <section id="getPublicKey" class="content-item">
+            <div class="overview">
+                <h4>getPublicKey</h4>
+                <p>Return the public key of the Account that is currently connected to the dApp.</p>
+                <h5>Input Arguments</h5>
+                <p>None</p>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>Address of the connected account</td>
+                        </tr>
+                        <tr>
+                            <td><code>publicKey: string</code></td>
+                            <td>Public key of the connected account</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getPublicKey()
+.then(publicKeyData => {
+  const {
+    address,
+    publicKey
+  } = publicKeyData;
+
+  console.log('Account address: ' + address);
+  console.log('Account public key: ' + publicKey);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  address: 'AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo',
+  publicKey: '03ba9524bd7479414be713c3a4f6f3ef35f90bb4b08f0f552211bf734c24415230'
+}
+    </code></pre>
+            </div>
+        </section>
+        <section id="getBalance" class="content-item">
+            <div class="overview">
+                <h4>getBalance</h4>
+                <p>Return balance of a specific asset for the given account.</p>
+                <p>If the asset is omited from a request to MainNet, all asset and token balances will be returned.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>params: <a href="#getBalance-BalanceRequest"><img class="tip"
+                                            src="/assets/images/dapi/i.svg" alt="i"></a>BalanceRequest |
+                                    BalanceRequest[]</code></td>
+                            <td>A list of Balance Request Objects, specifying which addresses, and which assets to
+                                query
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="getBalance-BalanceRequest">BalanceRequest</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>Address to check balance(s)</td>
+                        </tr>
+                        <tr>
+                            <td><code>assets?: string | string[]</code></td>
+                            <td>Asset ID or script hash to check balance</td>
+                        </tr>
+                        <tr>
+                            <td><code>fetchUTXO?: boolean</code></td>
+                            <td>Fetches to UTXO data for NEO and/or GAS if attribute is 'true'</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>[address: string]: <a href="#getBalance-BalanceResponse"><img class="tip"
+                                            src="/assets/images/dapi/i.svg" alt="i"></a>BalanceResponse[]</code></td>
+                            <td>This key is the actual address of the query eg. "AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo"
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="getBalance-BalanceResponse">BalanceResponse</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>assetID: string</code></td>
+                            <td>ID of the given asset</td>
+                        </tr>
+                        <tr>
+                            <td><code>symbol: string</code></td>
+                            <td>Symbol of the given asset</td>
+                        </tr>
+                        <tr>
+                            <td><code>amount: string</code></td>
+                            <td>Double Value of the balance represented as a String</td>
+                        </tr>
+                        <tr>
+                            <td><code>unspent: UTXO[]?</code></td>
+                            <td>If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS</td>
+                        </tr>
+                        <!-- <tr><a href="#getProvider-Extra">
+                            <td><code>unspent?: <img class="tip" src="/assets/images/dapi/i.svg" alt="i">UTXO[]</code></td>
+                            <td>If fetch utxo's was turned on then the utxo array will be returned for the native assets
+                                NEO and GAS</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <p>UTXO</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>asset: string</code></td>
+                            <td>Script hash of the native asset</td>
+                        </tr>
+                        <tr>
+                            <td><code>createdAtBlock: int</code></td>
+                            <td>Block number where this utxo was created</td>
+                        </tr>
+                        <tr>
+                            <td><code>index: int</code></td>
+                            <td>Output index of the UTXO relative to the txid in which it was created</td>
+                        </tr>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction id of this UTXO</td>
+                        </tr>
+                        <tr>
+                            <td><code>value: string</code></td>
+                            <td>The double value of this UTXO represented as a String</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getBalance({
+  params: [
+    {
+      address: 'AUhp11NZfZEDKXWuSo5TPdGhnMx9wG2pdc',
+      assets: ['GAS','MCT', '0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b', 'NEO']
+    },{
+      address: 'AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo'
+    }
+  ],
+  network: 'TestNet'
+})
+.then((results) => {
+  Object.keys(results).forEach(address => {
+    const balances = results[address];
+    balances.forEach(balance => {
+      const { assetID, symbol, amount } = balance
+
+      console.log('Address: ' + address);
+      console.log('Asset ID: ' + assetID);
+      console.log('Asset symbol: ' + symbol);
+      console.log('Amount: ' + amount);
+    });
+  });
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+  }
+});
+
+/* Single asset balance request sample */
+// input
+{
+  params: {
+    address: 'AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo',
+    assets: ['NEO']
+  },
+  network: 'TestNet'
+}
+
+// output
+{
+  AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo: [
+    {
+      assetID: '0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b',
+      symbol: 'NEO',
+      amount: '6319'
+    }
+  ],
+}
+
+/* Single account balances request sample */
+// input
+{
+  params: {
+    address: 'AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo',
+  },
+  network: 'TestNet'
+}
+
+// output
+{
+  AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo: [
+    {
+      assetID: '0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b',
+      symbol: 'NEO',
+      amount: '6319'
+    },
+    {
+      assetID: '0x602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
+      symbol: 'GAS',
+      amount: '2958.1094388'
+    }
+  ]
+}
+
+/* Multiple account balances request sample */
+// input
+{
+  params: [
+    {
+      address: 'AUhp11NZfZEDKXWuSo5TPdGhnMx9wG2pdc'
+    },
+    {
+      address: 'AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo',
+      asset: 'NEO'
+    }
+  ],
+  network: 'TestNet'
+}
+
+// output
+{
+  AUhp11NZfZEDKXWuSo5TPdGhnMx9wG2pdc: [
+    {
+      assetID: '0x602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
+      symbol: 'NEO',
+      amount: '1'
+    },
+    {
+      assetID: '0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b',
+      symbol: 'GAS',
+      amount: '1'
+    },
+  ],
+  AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo: [
+    {
+      assetID: '0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b',
+      symbol: 'NEO',
+      amount: '6319'
+    },
+    {
+      assetID: '0x602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
+      symbol: 'GAS',
+      amount: '2958.1094388'
+    }
+  ]
+}
+    </code></pre>
+            </div>
+        </section>
+        <section id="getStorage" class="content-item">
+            <div class="overview">
+                <h4>getStorage</h4>
+                <p>Reads the raw value in smart contract storage.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>scriptHash: string</code></td>
+                            <td>Script hash of the smart contract to invoke a read on</td>
+                        </tr>
+                        <tr>
+                            <td><code>key: string</code></td>
+                            <td>Key of the storage value to retrieve from the contract</td>
+                        </tr>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>result: string</code></td>
+                            <td>The raw value that's stored in the contract</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getStorage({
+  scriptHash: '03febccf81ac85e3d795bc5cbd4e84e907812aa3',
+  key: 'Peter',
+  network: 'TestNet'
+})
+.then(result => {
+  const value = result;
+  console.log('Storage value: ' + value.result);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_REFUSED':
+      console.log('Connection dApp not connected. Please call the "connect" function.');
+      break;
+    case 'RPC_ERROR':
+      console.log('There was an error when broadcasting this transaction to the network.');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  result: 'Lin'
+}
+    </code></pre>
+            </div>
+        </section>
+        <section id="invokeRead" class="content-item">
+            <div class="overview">
+                <h4>invokeRead</h4>
+                <p>Execute a contract invocation in read-only mode.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>scriptHash: string</code></td>
+                            <td>Script hash of the smart contract to invoke a read on</td>
+                        </tr>
+                        <tr>
+                            <td><code>operation: string</code></td>
+                            <td>Operation on the smart contract to call</td>
+                        </tr>
+                        <tr>
+                            <td><code>args: <a href="#invokeRead-Argument"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>Argument[]</code></td>
+                            <td>Any input arguments for the operation</td>
+                        </tr>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <p>The wallet will return the direct response from the RPC node.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>script: string</code></td>
+                            <td>The script which was run</td>
+                        </tr>
+                        <tr>
+                            <td><code>state: string</code></td>
+                            <td>Status of the executeion</td>
+                        </tr>
+                        <tr>
+                            <td><code>gas_consumed: string</code></td>
+                            <td>Estimated amount of GAS to be used to execute the invocation. (Up to 10 free per
+                                transaction)</td>
+                        </tr>
+                        <tr>
+                            <td><code>stack: <a href="#invokeRead-Argument"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>Argument[]</code></td>
+                            <td>An array of response arguments</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invokeRead-Argument">Argument</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: 'String' | 'Boolean' | 'Hash160' | 'Hash256' | 'Integer' | 'ByteArray' |
+                                    'Array' | 'Address'</code></td>
+                            <td>The type of the argument with you are using</td>
+                        </tr>
+                        <tr>
+                            <td><code>value: string</code></td>
+                            <td>String representation of the argument which you are using</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.invokeRead({
+  scriptHash: '0x96ef49bb4f67e25235a4cd4455d2f10779186ab2',
+  operation: 'balanceOf',
+  args: [
+    {
+      type: 'Address',
+      value: 'AY5xLg4RPZPcYoD1fW7j455PkAybbU2x42'
+    }
+  ]
+})
+.then(result => {
+  console.log('Read invocation result: ' + JSON.stringify(result));
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_REFUSED':
+      console.log('Connection dApp not connected. Please call the "connect" function.');
+      break;
+   case 'RPC_ERROR':
+    console.log('There was an error when broadcasting this transaction to the network.');
+    break;
+  }
+});
+
+/* Example Response */
+{
+  script: '14b2ed6ac7d282933322293e5a0c5c8bb12f9477f251c10962616c616e63654f6667b26a187907f1d25544cda43552e2674fbb49ef96',
+  state: 'HALT',
+  gas_consumed: '0.315',
+  stack: [
+    {
+      type: 'ByteArray',
+      value: '00902f5009'
+    }
+  ]
+}
+    </code></pre>
+            </div>
+        </section>
+        <section id="verifyMessage" class="content-item">
+            <div class="overview">
+                <h4>verifyMessage</h4>
+                <p>Returns whether the provided signature data matches the provided message and was signed by the
+                    account of the provided public key.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>message: string</code></td>
+                            <td>Salt prefix + original message</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Signed message</td>
+                        </tr>
+                        <tr>
+                            <td><code>publicKey: string</code></td>
+                            <td>Public key of account that signed message</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>result: boolean</code></td>
+                            <td>Whether the provided signature matches the provided message and public key</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.verifyMessage({
+  message: 'Hello world',
+  data: 'be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd',
+  publicKey: '03ba9524bd7479414be713c3a4f6f3ef35f90bb4b08f0f552211bf734c24415230'
+})
+.then(result => {
+  console.log('Signature data matches provided message and public key: ' + JSON.stringify(result));
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  result: true
+}
+    </code></pre>
+            </div>
+        </section>
+        <section id="getBlock" class="content-item">
+            <div class="overview">
+                <h4>getBlock</h4>
+                <p>Get information about a specific block.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>blockHeight: number</code></td>
+                            <td>The height of the block you would like to get information about</td>
+                        </tr>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to. If omitted, will default the network which the
+                                wallet is set to</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <p>The wallet will return the direct response from the RPC node.</p>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getBlock({
+  blockHeight: 2619690,
+  network: 'TestNet'
+})
+.then(result => {
+  console.log('Block information: ' + JSON.stringify(result));
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+   case 'RPC_ERROR':
+    console.log('There was an error when broadcasting this transaction to the network.');
+    break;
+  }
+});
+
+/* Example Response */
+{
+  hash: "0xc1668a114ee680597196ed402a0e0507fd8348e6090a54250d7accfadbd74b6e",
+  size: 686,
+  version: 0,
+  previousblockhash: "0xbae289c94e17ae90022673186fd6e1e48b7dd7afb89319bff0e2832db06d16b3",
+  merkleroot: "0x07d70f7337d3869a7daa538425d78a47212fb8c6130d66d84ac48526853a4e51",
+  time: 1557376153,
+  index: 2619690,
+  nonce: "8efd62ebb85ee68b",
+  nextconsensus: "AWZo4qAxhT8fwKL93QATSjCYCgHmCY1XLB",
+  script: {
+    invocation: "402a1dab9e5593d1d7d2a22a36772d4541b8053d33f8b8474b7d5a20066c1bd821e051fc252ed16146930d55ecb17fbb74972fba4c4b27af81a707999ca1313dd2401520eba2dd3b54a74a798cbb716c484ba6f6f21218f099e3d622a0fbd15989f38f9b0b344daf9b89175055d3a92f49df65118e8598735d651bedd4f1811baeb140e6491c03f3057f404d2fe7db50e40e82ade405a9dc7fccd81f4ba0b499a4a29f8570d631b8d40c5995b17d9391fe9ff8c73f28a4e1eb922b7a1ce9d1a5dc0448402cfcdede54828875d45402120aa2d8f78c7bd40df5e5d3b1873fd7e4d03672ebd0904f90c90fa519c623968f55550ae55374de66dc0db9c9d865c593bb95be5640214db0cd3cea6f4ad866df4129d482b89583805d1bdb08ce8399881e70351778a3e4a4093cf69aa7b99b83347fbfd38d85ff45d6a78ca2ab8cacffbfbc8c2d16",
+    verification: "5521030ef96257401b803da5dd201233e2be828795672b775dd674d69df83f7aec1e36210327da12b5c40200e9f65569476bbff2218da4f32548ff43b6387ec1416a231ee821025bdf3f181f53e9696227843950deb72dcd374ded17c057159513c3d0abe20b64210266b588e350ab63b850e55dbfed0feeda44410a30966341b371014b803a15af0721026ce35b29147ad09e4afe4ec4a7319095f08198fa8babbe3c56e970b143528d222103c089d7122b840a4935234e82e26ae5efd0c2acb627239dc9f207311337b6f2c12103fd95a9cb3098e6447d0de9f76cc97fd5e36830f9c7044457c15a0e81316bf28f57ae"
+  },
+  tx: [
+    {
+      txid: "0x07d70f7337d3869a7daa538425d78a47212fb8c6130d66d84ac48526853a4e51",
+      size: 10,
+      type: "MinerTransaction",
+      version: 0,
+      attributes: [],
+      vin: [],
+      vout: [],
+      sys_fee: "0",
+      net_fee: "0",
+      scripts: [],
+      nonce: 3093227147
+    }
+  ],
+  confirmations: 104111,
+  nextblockhash: "0x2c9d6a107b21e83e09dd1b89df344a726895147d410120c46996290692ba29aa"
+}
+    </code></pre>
+            </div>
+        </section>
+        <section id="getTransaction" class="content-item">
+            <div class="overview">
+                <h4>getTransaction</h4>
+                <p>Get information about a specific transaction.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The id of the transaction you would like to get information about</td>
+                        </tr>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to. If omitted, will default the network which the
+                                wallet is set to</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <p>The wallet will return the direct response from the RPC node.</p>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getTransaction({
+  txid: '0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474',
+  network: 'MainNet'
+})
+.then(result => {
+  console.log('Transaction details: ' + JSON.stringify(result));
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+   case 'RPC_ERROR':
+    console.log('There was an error when broadcasting this transaction to the network.');
+    break;
+  }
+});
+
+/* Example Response */
+{
+  txID: "0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474,
+  vin: [
+    {
+      address: "AZy5LGtAvwpyJMYq39xX4MsDzAL2B6pEZn",
+      assetID: "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
+      n: 0,
+      txid: "0xd7769e675a47bea100e1e9ea5e1723ec181d90b601884ffc4837844d4ca95103",
+      value: "4"
+    }
+  ],
+  vout: [
+    {
+      address: "AZy5LGtAvwpyJMYq39xX4MsDzAL2B6pEZn",
+      assetID: "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
+      n: 0,
+      value: "4"
+    }
+  ],
+  sys_fee: "0",
+  net_fee: "0",
+  blockIndex: 3840003,
+  blocktime: 1559707311
+}
+  </code></pre>
+            </div>
+        </section>
+        <section id="getApplicationLog" class="content-item">
+            <div class="overview">
+                <h4>getApplicationLog</h4>
+                <p>Get the application log for a given transaction.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The id of the transaction you would like to get the application logs for</td>
+                        </tr>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to. If omitted, will default the network which the
+                                wallet is set to</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <p>The wallet will return the direct response from the RPC node.</p>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getApplicationLog({
+  txid: '7e049fd7c253dabf38e4156df30c78b30d49f307196aa89b99a47d2330789bf2',
+  network: 'TestNet'
+})
+.then(result => {
+  console.log('Application log of transaction execution: ' + JSON.stringify(result));
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+   case 'RPC_ERROR':
+    console.log('There was an error when broadcasting this transaction to the network.');
+    break;
+  }
+});
+
+/* Example Response */
+{
+  txid: "0x7e049fd7c253dabf38e4156df30c78b30d49f307196aa89b99a47d2330789bf2",
+  executions: [
+    {
+      trigger: "Application",
+      contract: "0x72985e7f2cea98b89af54d8607bc6400814c4b45",
+      vmstate: "HALT, BREAK",
+      gas_consumed: "5.292",
+      stack: [],
+      notifications: [
+        {
+          contract: "0x849d095d07950b9e56d0c895ec48ec5100cfdff1",
+          state: {
+            type: "Array",
+            value: [
+              {
+                type: "ByteArray",
+                value: "7472616e73666572"
+              },
+              {
+                type: "ByteArray",
+                value: "296ac124021a71c449a9bad320c16429b08ad6ee"
+              },
+              {
+                type: "ByteArray",
+                value: "7869ef9732cdf6f6d54adaa5cae3b55a9396bceb"
+              },
+              {
+                type: "ByteArray",
+                value: "00e1f505"
+              }
+            ]
+          }
+        },
+        {
+          contract: "0x849d095d07950b9e56d0c895ec48ec5100cfdff1",
+          state: {
+            type: "Array",
+            value: [
+              {
+                type: "ByteArray",
+                value: "7472616e73666572"
+              },
+              {
+                type: "ByteArray",
+                value: "296ac124021a71c449a9bad320c16429b08ad6ee"
+              },
+              {
+                type: "ByteArray",
+                value: "b1fdddf658ce5ff9f83e66ede2f333ecfcc0463e"
+              },
+              {
+                type: "ByteArray",
+                value: "00e1f505"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+      </code></pre>
+            </div>
+        </section>
+        <section id="send" class="content-item">
+            <div class="overview">
+                <h4>send</h4>
+                <p>Invoke a transfer of a specified amount of a given asset from the connected account to another
+                    account.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>fromAddress: string</code></td>
+                            <td>Address of the connected account to send the assets from</td>
+                        </tr>
+                        <tr>
+                            <td><code>toAddress: string</code></td>
+                            <td>Address of the receiver of the assets to be sent</td>
+                        </tr>
+                        <tr>
+                            <td><code>asset: string</code></td>
+                            <td>Asset script hash to be sent. Accepts asset symbol only for "MainNet"</td>
+                        </tr>
+                        <tr>
+                            <td><code>amount: string</code></td>
+                            <td>The parsed amount of the asset to be sent</td>
+                        </tr>
+                        <tr>
+                            <td><code>remark?: string</code></td>
+                            <td>Description of the transaction to be made</td>
+                        </tr>
+                        <tr>
+                            <td><code>fee?: string</code></td>
+                            <td>The parsed amount of network fee (in GAS) to include with transaction</td>
+                        </tr>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to</td>
+                        </tr>
+                        <tr>
+                            <td><code>broadcastOverride?: boolean</code></td>
+                            <td>In the case that the dApp would like to be responsible for broadcasting the signed transaction rather than the wallet provider</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <p>In the case where the "broadcastOverride" input argument is not set, or set to false.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction ID of the send invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>nodeURL: string</code></td>
+                            <td>The node which the transaction was broadcast to. Returned if transaction is broadcast by wallet provider</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <p>It is reccommended that the DAPP take appropriate levels of risk prevention when accepting
+                    transactions. The dapp can query the mempool of a known node to ensure that the transaction will
+                    indeed be broadcast on the network.</p> -->
+                <p>In the case where the "broadcastOverride" input argument is set to True.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction ID of the send invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>signedTx: string</code></td>
+                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument was set to True</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.send({
+  fromAddress: 'AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo',
+  toAddress: 'ALWNCcuQDoE287UWvYhRZYpPBDfswggbTX',
+  asset: 'NEO',
+  amount: '1',
+  remark: 'NEOLine',
+  fee: '0.0001',
+  network: 'TestNet',
+  broadcastOverride: false
+})
+.then(result => {
+  console.log('Send transaction success!');
+  console.log('Transaction ID: ' + result.txid);
+  console.log('RPC node URL: ' + result.nodeURL);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'RPC_ERROR':
+      console.log('There was an error when broadcasting this transaction to the network.');
+      break;
+    case 'MALFORMED_INPUT':
+      console.log('The receiver address provided is not valid.');
+      break;
+    case 'CANCELED':
+      console.log('The user has canceled this transaction.');
+      break;
+    case 'INSUFFICIENT_FUNDS':
+      console.log('The user has insufficient funds to execute this transaction.');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  txid: 'cb0cf81cdd75762545965038cea350c717a5d500bb40d4ca80fe45f416f564ac',
+  nodeURL: 'https://testnet.api.neoline.cn'
+}
+      </code></pre>
+            </div>
+        </section>
+        <section id="invoke" class="content-item">
+            <div class="overview">
+                <h4>invoke</h4>
+                <p>Invoke allows for the generic execution of smart contracts on behalf of the user. It is reccommended
+                    to have a general understanding of the NEO blockchain, and to be able successfully use all other
+                    commands listed previously in this document before attempting a generic contract execution.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>scriptHash: string</code></td>
+                            <td>Script hash of the smart contract to invoke</td>
+                        </tr>
+                        <tr>
+                            <td><code>operation: string</code></td>
+                            <td>Operation on the smart contract to call</td>
+                        </tr>
+                        <tr>
+                            <td><code>args: <a href="#Invoke-Argument"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>Argument[]</code></td>
+                            <td>Any input arguments for the operation</td>
+                        </tr>
+                        <tr>
+                            <td><code>fee?: string</code></td>
+                            <td>The parsed amount of network fee (in GAS) to include with transaction</td>
+                        </tr>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to</td>
+                        </tr>
+                        <tr>
+                            <td><code>attachedAssets?: <a href="#Invoke-AttachedAssets"><img class="tip"
+                                            src="/assets/images/dapi/i.svg" alt="i"></a>AttachedAssets</code></td>
+                            <td>Describes the assets to attach with the smart contract, e.g. attaching assets to mint
+                                tokens during a token sale</td>
+                        </tr>
+                        <tr>
+                            <td><code>assetIntentOverrides?: <a href="#Invoke-AssetIntentOverrides"><img class="tip"
+                                            src="/assets/images/dapi/i.svg" alt="i"></a>AssetIntentOverrides</code>
+                            </td>
+                            <td>A hard override of all transaction utxo inputs and outputs. <p>IMPORTANT: If provided, fee and attachedAssets will be ignored.</p></td>
+                        </tr>
+                        <tr>
+                            <td><code>triggerContractVerification?: boolean</code></td>
+                            <td>Adds the instruction to invoke the contract verification trigger</td>
+                        </tr>
+                        <tr>
+                            <td><code>broadcastOverride?: boolean</code></td>
+                            <td>In the case that the dApp would like to be responsible for broadcasting the signed transaction rather than the wallet provider</td>
+                        </tr>
+                        <tr>
+                            <td><code>txHashAttributes?: <a href="#Invoke-TxHashAttribute"><img class="tip"
+                                            src="/assets/images/dapi/i.svg" alt="i"></a>TxHashAttribute[]</code></td>
+                            <td>Adds transaction attributes for the "Hash<x>" usage block</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="Invoke-Argument">Argument</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: 'String' | 'Boolean' | 'Hash160' | 'Hash256' | 'Integer' | 'ByteArray' |
+                                    'Array' | 'Address'</code></td>
+                            <td>The type of the argument with you are using</td>
+                        </tr>
+                        <tr>
+                            <td><code>value: any</code></td>
+                            <td>String representation of the argument which you are using</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="Invoke-TxHashAttribute">TxHashAttribute</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: 'String' | 'Boolean' | 'Hash160' | 'Hash256' | 'Integer' | 'ByteArray' |
+                                    'Array' | 'Address'</code></td>
+                            <td>The type of the argument with you are using</td>
+                        </tr>
+                        <tr>
+                            <td><code>value: any</code></td>
+                            <td>String representation of the argument which you are using</td>
+                        </tr>
+                        <tr>
+                            <td><code>txAttrUsage: 'Hash1' | 'Hash2' | 'Hash3' | 'Hash4' | 'Hash5' | 'Hash6' | 'Hash7' |
+                                    'Hash8' | 'Hash9' | 'Hash10' | 'Hash11' | 'Hash12' | 'Hash13' | 'Hash14' |
+                                    'Hash15'</code></td>
+                            <td>Attribute usage value</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="Invoke-AttachedAssets">AttachedAssets</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>NEO?: string</code></td>
+                            <td>The amount of NEO to attach to the contract invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>GAS?: string</code></td>
+                            <td>The amount of GAS to attach to the contract invocation</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="Invoke-AssetIntentOverrides">AssetIntentOverrides</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>inputs: <a href="#Invoke-AssetInput"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>AssetInput[]</code>
+                            </td>
+                            <td>A list of UTXO inputs to use for this transaction</td>
+                        </tr>
+                        <tr>
+                            <td><code>outputs: <a href="#Invoke-AssetOutput"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>AssetOutput[]</code>
+                            </td>
+                            <td>A list of UTXO outputs to use for this transaction</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="Invoke-AssetInput">AssetInput</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>Transaction id to be used as input</td>
+                        </tr>
+                        <tr>
+                            <td><code>index: number</code></td>
+                            <td>Index of the UTXO, can be found from transaction details</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="Invoke-AssetOutput">AssetOutput</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>asset: string</code></td>
+                            <td>A list of UTXO inputs to use for this transaction</td>
+                        </tr>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>A list of UTXO outputs to use for this transaction</td>
+                        </tr>
+                        <tr>
+                            <td><code>value: string</code></td>
+                            <td>String representation of double or integer value to be used as output</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <p>In the case where the "broadcastOverride" input argument is not set, or set to false.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction ID of the invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>nodeURL: string</code></td>
+                            <td>The node which the transaction was broadcast to. Returned if transaction is broadcast by wallet provider</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>In the case where the "broadcastOverride" input argument is set to True.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction ID of the invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>signedTx: string</code></td>
+                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument was set to True</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.invoke({
+  scriptHash: 'af7c7328eee5a275a3bcaee2bf0cf662b5e739be',
+  operation: 'balanceOf',
+  args: [
+    {
+      type: 'Hash160',
+      value: '91b83e96f2a7c4fdf0c1688441ec61986c7cae26'
+    }
+  ],
+  attachedAssets: {
+    NEO: '1',
+    GAS: '0.0001'
+  },
+  fee: '0.001',
+  network: 'TestNet',
+  broadcastOverride: false,
+  txHashAttributes: [
+    {
+      type: 'Boolean',
+      value: true,
+      txAttrUsage: 'Hash1'
+    }
+  ]
+})
+.then(result => {
+  console.log('Invoke transaction success!');
+  console.log('Transaction ID: ' + result.txid);
+  console.log('RPC node URL: ' + result.nodeURL);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'RPC_ERROR':
+      console.log('There was an error when broadcasting this transaction to the network.');
+      break;
+    case 'CANCELED':
+      console.log('The user has canceled this transaction.');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  txid: 'd08c5f58675376832480f2959732caa2a0e024ad0304ed77c62146a9621124d6',
+  nodeUrl: 'https://testnet.api.neoline.cn'
+};
+      </code></pre>
+            </div>
+        </section>
+        <section id="invokeMulti" class="content-item">
+            <div class="overview">
+                <h4>invokeMulti</h4>
+                <p>Invoke Multi functions the same as Invoke, but accepts inputs to execute multiple invokes in the same transaction.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>fee?: string</code></td>
+                            <td>If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee</td>
+                        </tr>
+                        <tr>
+                            <td><code>network: string</code></td>
+                            <td>Network alias to submit this request to.</td>
+                        </tr>
+                        <tr>
+                            <td><code>assetIntentOverrides?: <a href="#invokeMulti-AssetIntentOverrides"><img class="tip"
+                                            src="/assets/images/dapi/i.svg" alt="i"></a>AssetIntentOverrides</code>
+                            </td>
+                            <td>Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored</td>
+                        </tr>
+                        <tr>
+                            <td><code>invokeArgs?: <a href="#invokeMulti-InvokeArguments"><img class="tip"
+                                            src="/assets/images/dapi/i.svg" alt="i"></a>InvokeArguments[]</code></td>
+                            <td>Array of contract invoke inputs</td>
+                        </tr>
+                        <tr>
+                            <td><code>broadcastOverride?: boolean</code></td>
+                            <td>If this flag is set to True, the wallet provider will return the signed transaction rather than broadcasting to a node.</td>
+                        </tr>
+                        <tr>
+                            <td><code>txHashAttributes?: <a href="#invokeMulti-TxHashAttribute"><img class="tip"
+                                            src="/assets/images/dapi/i.svg" alt="i"></a>TxHashAttribute[]</code></td>
+                            <td>Optional list of tx attribute hash values to be added</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invokeMulti-InvokeArguments">InvokeArguments</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>scriptHash: string</code></td>
+                            <td>The script hash of the contract that you wish to invoke</td>
+                        </tr>
+                        <tr>
+                            <td><code>operation: string</code></td>
+                            <td>The operation on the smart contract that you wish to call. This can be fetched from the contract ABI</td>
+                        </tr>
+                        <tr>
+                            <td><code>args: <a href="#invokeMulti-Argument"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>Argument[]</code></td>
+                            <td>A list of arguments necessary to perform on the operation you wish to call</td>
+                        </tr>
+                        <tr>
+                            <td><code>attachedAssets?: AttachedAssets[]</code></td>
+                            <td>Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale</td>
+                        </tr>
+                        <tr>
+                            <td><code>triggerContractVerification: bolean?</code></td>
+                            <td>Adds the instruction to invoke the contract verifican trigger</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invokeMulti-Argument">Argument</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: 'String' | 'Boolean' | 'Hash160' | 'Hash256' | 'Integer' | 'ByteArray' |
+                                    'Array' | 'Address'</code></td>
+                            <td>The type of the argument with you are using</td>
+                        </tr>
+                        <tr>
+                            <td><code>value: any</code></td>
+                            <td>String representation of the argument which you are using</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invokeMulti-TxHashAttribute">TxHashAttribute</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: 'String' | 'Boolean' | 'Hash160' | 'Hash256' | 'Integer' | 'ByteArray' |
+                                    'Array' | 'Address'</code></td>
+                            <td>The type of the argument with you are using</td>
+                        </tr>
+                        <tr>
+                            <td><code>value: any</code></td>
+                            <td>String representation of the argument which you are using</td>
+                        </tr>
+                        <tr>
+                            <td><code>txAttrUsage: 'Hash1' | 'Hash2' | 'Hash3' | 'Hash4' | 'Hash5' | 'Hash6' | 'Hash7' |
+                                    'Hash8' | 'Hash9' | 'Hash10' | 'Hash11' | 'Hash12' | 'Hash13' | 'Hash14' |
+                                    'Hash15'</code></td>
+                            <td>Attribute usage value</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invokeMulti-AssetIntentOverrides">AssetIntentOverrides</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>inputs: <a href="#invokeMulti-AssetInput"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>AssetInput[]</code>
+                            </td>
+                            <td>A list of UTXO inputs to use for this transaction</td>
+                        </tr>
+                        <tr>
+                            <td><code>outputs: <a href="#invokeMulti-AssetOutput"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>AssetOutput[]</code>
+                            </td>
+                            <td>A list of UTXO outputs to use for this transaction</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invokeMulti-AssetInput">AssetInput</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>Transaction id to be used as input</td>
+                        </tr>
+                        <tr>
+                            <td><code>index: number</code></td>
+                            <td>Index of the UTXO, can be found from transaction details</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invokeMulti-AssetOutput">AssetOutput</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>asset: string</code></td>
+                            <td>A list of UTXO inputs to use for this transaction</td>
+                        </tr>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>A list of UTXO outputs to use for this transaction</td>
+                        </tr>
+                        <tr>
+                            <td><code>value: string</code></td>
+                            <td>String representation of double or integer value to be used as output</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <p>In the case where the "broadcastOverride" input argument is not set, or set to false.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction ID of the invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>nodeURL: string</code></td>
+                            <td>The node which the transaction was broadcast to. Returned if transaction is broadcast by wallet provider</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>In the case where the "broadcastOverride" input argument is set to True.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction ID of the invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>signedTx: string</code></td>
+                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument was set to True</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.invokeMulti({
+    invokeArgs: [
+        {
+            scriptHash: "808f0823a811cdb7d80af3509e900cc2f594ceb1",
+            operation: "transfer",
+            args: [
+            {
+                    "type": "Address",
+                    "value": "AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo"
+                },
+                {
+                    "type": "Address",
+                    "value": "AY69kajrRx1Qk29AeLxvkXHYf2h3pQw9yK"
+                },
+                {
+                    "type": "Integer",
+                    "value": "100000000"
+                }
+
+            ],
+            attachedAssets: {
+                NEO: '1',
+                GAS: '0.0001'
+            },
+        },
+        {
+            scriptHash: "808f0823a811cdb7d80af3509e900cc2f594ceb1",
+            operation: "transfer",
+            args: [
+            {
+                    "type": "Address",
+                    "value": "AWSEU4BXpjGVdw9ajnFBXh8Rg8cgw9f3Zo"
+                },
+                {
+                    "type": "Address",
+                    "value": "AY69kajrRx1Qk29AeLxvkXHYf2h3pQw9yK"
+                },
+                {
+                    "type": "Integer",
+                    "value": "300000000"
+                }
+            ],
+            attachedAssets: {
+                NEO: '2',
+                GAS: '0.01'
+            },
+        }
+    ],
+    fee: '0.01',
+    network: 'TestNet',
+    broadcastOverride: false,
+    txHashAttributes: [
+        {
+            type: 'Boolean',
+            value: true,
+            txAttrUsage: 'Hash1'
+        }
+    ]
+})
+.then(({txid, nodeURL}: InvokeOutput) => {
+  console.log('Invoke transaction success!');
+  console.log('Transaction ID: ' + txid);
+  console.log('RPC node URL: ' + nodeURL);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case NO_PROVIDER:
+      console.log('No provider available.');
+      break;
+    case RPC_ERROR:
+      console.log('There was an error when broadcasting this transaction to the network.');
+      break;
+    case CANCELED:
+      console.log('The user has canceled this transaction.');
+      break;
+  }
+});
+
+/* Example Response */
+{
+    txid: "8979389ac095c37c43fa6922ae3f1180e33082394b43108b82cb0ca37d900541",
+    nodeURL: "https://testnet.api.neoline.cn"
+};
+      </code></pre>
+            </div>
+        </section>
+        <section id="signMessage" class="content-item">
+            <div class="overview">
+                <h4>signMessage</h4>
+                <p>Signs a provided messaged with an account selected by user. A randomized salt prefix is added to the input string before it is signed, and it is encased in a non-executable transaction before signed. This ensures allow compatibility with Ledger devices.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>message: string</code></td>
+                            <td>The message to sign</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>publicKey: string</code></td>
+                            <td>Public key of account that signed message</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Original message signed</td>
+                        </tr>
+                        <tr>
+                            <td><code>salt: string</code></td>
+                            <td>Salt added to original message as prefix, before signing</td>
+                        </tr>
+                        <tr>
+                            <td><code>message: string</code></td>
+                            <td>Signed message</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.signMessage({
+  message: 'Hello world'
+})
+.then(signedMessage => {
+  const {
+    publicKey,
+    message,
+    salt,
+    data
+  } = signedMessage;
+
+  console.log('Public key used to sign:', publicKey);
+  console.log('Original message:', message);
+  console.log('Salt added to message:', salt);
+  console.log('Signed data:', data);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case UNKNOWN_ERROR:
+      console.log(description);
+      break;
+  }
+});
+
+/* Example Response */
+{
+  publicKey: '"03ba9524bd7479414be713c3a4f6f3ef35f90bb4b08f0f552211bf734c24415230"',
+  data: '"be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd"',
+  salt: '',
+  message: 'Hello world'
+}
+      </code></pre>
+            </div>
+        </section>
+        <section id="deploy" class="content-item">
+            <div class="overview">
+                <h4>deploy</h4>
+                <p>Will deploy a compiled smart contract to the blockchain with the provided input parameters. The GAS
+                    cost for deploying the contract will be calculated by the provider, and displayed to the user upon
+                    tx acceptance or rejection.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network to submit this request to. If omitted, will default to network the wallet is currently set to</td>
+                        </tr>
+                        <tr>
+                            <td><code>name: string</code></td>
+                            <td>The name of the contract to be deployed</td>
+                        </tr>
+                        <tr>
+                            <td><code>version: string</code></td>
+                            <td>The version of the contract to be deployed</td>
+                        </tr>
+                        <tr>
+                            <td><code>author: string</code></td>
+                            <td>The author of the contract to be deployed</td>
+                        </tr>
+                        <tr>
+                            <td><code>email: string</code></td>
+                            <td>The email of the contract to be deployed</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>The description of the contract to be deployed</td>
+                        </tr>
+                        <tr>
+                            <td><code>needsStorage?: boolean</code></td>
+                            <td>Whether or not the contract will use storage</td>
+                        </tr>
+                        <tr>
+                            <td><code>dynamicInvoke?: boolean</code></td>
+                            <td>Whether or not the contract will be performing dynamic invocations of other smart
+                                contracts</td>
+                        </tr>
+                        <tr>
+                            <td><code>isPayable?: boolean</code></td>
+                            <td>Whether or not the contract will be able to accept native assets</td>
+                        </tr>
+                        <tr>
+                            <td><code>parameterList: string</code></td>
+                            <td>The list of input argument types for the Main function on the contract.
+                                https://docs.neo.org/en-us/sc/Parameter.html</td>
+                        </tr>
+                        <tr>
+                            <td><code>returnType: string</code></td>
+                            <td>The list of output returnType argument types.
+                                https://docs.neo.org/en-us/sc/Parameter.html</td>
+                        </tr>
+                        <tr>
+                            <td><code>code: string</code></td>
+                            <td>The hex of the compiled smart contract avm</td>
+                        </tr>
+                        <tr>
+                            <td><code>netowrkFee: number</code></td>
+                            <td>The network fee to execute the transaction, in addition to the deploy fee which will be
+                                added automatically</td>
+                        </tr>
+                        <tr>
+                            <td><code>broadcastOverride?: boolean</code></td>
+                            <td>In the case that the dApp would like to be responsible for broadcasting the signed transaction rather than the wallet provider</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <p>In the case where the "broadcastOverride" input argument is not set, or set to false.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction ID of the invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>nodeURL: string</code></td>
+                            <td>The node which the transaction was broadcast to. Returned if transaction is broadcast by wallet</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>In the case where the "broadcastOverride" input argument is set to True.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>The transaction ID of the invocation</td>
+                        </tr>
+                        <tr>
+                            <td><code>signedTx: string</code></td>
+                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument was set to True</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.deploy({
+  network: 'TestNet',
+  name: 'Hello world!',
+  version: 'v1.0.0',
+  author: 'NEOLine',
+  email: 'info@neoline.network',
+  description: 'My first contract.',
+  needsStorage: true,
+  dynamicInvoke: false,
+  isPayable: false,
+  parameterList: '0710',
+  returnType: '05',
+  code: '53c56b0d57616b652075702c204e454f21680f4e656f2e52756e74696d652e4c6f6761006c7566',
+  networkFee: '0.001'
+})
+.then(({txid, nodeURL}: InvokeOutput) => {
+  console.log('Deploy transaction success!');
+  console.log('Transaction ID: ' + txid);
+  console.log('RPC node URL: ' + nodeURL);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case UNKNOWN_ERROR:
+      console.log(description);
+      break;
+  }
+});
+
+/* Example Response */
+{
+  txid: '629b5f35e42aa6b65cd97ae3a95f89547596f4e2783c8778428c7f32df07918e',
+  nodeUrl: 'https://testnet.api.neoline.cn'
+};
+      </code></pre>
+            </div>
+        </section>
+        <section id="READY" class="content-item">
+            <div class="overview">
+                <h4>READY</h4>
+                <p>On a READY event, the callback will fire with a single argument with information about the wallet
+                    provider. At any time a READY event listener is added, it will immidiately be called if the provider
+                    is already in a ready state. This provides a single flow for dapp developers since this listener
+                    should start any and all interactions with the dapi protocol.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>name: string</code></td>
+                            <td>The name of the wallet provider</td>
+                        </tr>
+                        <tr>
+                            <td><code>website: string</code></td>
+                            <td>The website of the wallet provider</td>
+                        </tr>
+                        <tr>
+                            <td><code>version: string</code></td>
+                            <td>The version of the dAPI that the the wallet supports</td>
+                        </tr>
+                        <tr>
+                            <td><code>compatibility: string[]</code></td>
+                            <td>A list of all applicable NEPs which the wallet provider supports</td>
+                        </tr>
+                        <tr>
+                            <!-- <td><code>extra: <img class="tip" src="/assets/images/dapi/i.svg" alt="i">ExtraObject</code></td> -->
+                            <td><code>extra: object</code></td>
+                            <td>Provider specific attributes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <p>ExtraObject</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>theme: string</code></td>
+                            <td>UI theme of the provider</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+            </div>
+        </section>
+        <section id="ACCOUNT_CHANGED" class="content-item">
+            <div class="overview">
+                <h4>ACCOUNT_CHANGED</h4>
+                <p>On a ACCOUNT_CHANGED event, the callback will fire with a single argument of the new account. This
+                    occurs when an account is already connected to the dapp, and the user has changed the connected
+                    account from the dapi provider side.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>Address of the connected account</td>
+                        </tr>
+                        <tr>
+                            <td><code>label: string</code></td>
+                            <td>A label the users has set to identify their wallet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="CONNECTED" class="content-item">
+            <div class="overview">
+                <h4>CONNECTED</h4>
+                <p>On a CONNECTED event, the user has approved the connection of the dapp with one of their accounts.
+                    This will fire the first time any of one of the following methods are called from the dapp:
+                    <code>getAccount</code>, <code>invoke</code>, <code>send</code>.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>Address of the new account</td>
+                        </tr>
+                        <tr>
+                            <td><code>label: string</code></td>
+                            <td>A label the users has set to identify their wallet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="DISCONNECTED" class="content-item">
+            <div class="overview">
+                <h4>DISCONNECTED</h4>
+                <p>On a DISCONNECTED event, the account connected to the dapp via the dapi provider has been
+                    disconnected (logged out).</p>
+            </div>
+        </section>
+        <section id="NETWORK_CHANGED" class="content-item">
+            <div class="overview">
+                <h4>NETWORK_CHANGED</h4>
+                <p>On a NETWORK_CHANGED event, the user has changed the network their provider wallet is connected to.
+                    The event will return the updated network details.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>networks: string[]</code></td>
+                            <td>A list of all networks which this wallet provider allows access to</td>
+                        </tr>
+                        <tr>
+                            <td><code>defaultNetwork: string</code></td>
+                            <td>Network the wallet is currently set to</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="BLOCK_HEIGHT_CHANGED" class="content-item">
+            <div class="overview">
+                <h4>BLOCK_HEIGHT_CHANGED</h4>
+                <p>On a BLOCK_HEIGHT_CHANGED event, the block has advanced to the next.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>network?: string</code></td>
+                            <td>Network of the block which changed</td>
+                        </tr>
+                        <tr>
+                            <td><code>blockHeight: number</code></td>
+                            <td>Height of the new block</td>
+                        </tr>
+                        <tr>
+                            <td><code>blockTime: number</code></td>
+                            <td>Timestamp of the new block</td>
+                        </tr>
+                        <tr>
+                            <td><code>blockHash: string</code></td>
+                            <td>Hash of the new block</td>
+                        </tr>
+                        <tr>
+                            <td><code>tx: string[]</code></td>
+                            <td>List of transaction ids executed in the new block</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="TRANSACTION_CONFIRMED" class="content-item">
+            <div class="overview">
+                <h4>TRANSACTION_CONFIRMED</h4>
+                <p>On a TRANSACTION_CONFIRMED event, a previously broadcast transaction via the dapi has been confirmed
+                    by the blockchain.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>txid: string</code></td>
+                            <td>Transaction id which was confirmed on chain</td>
+                        </tr>
+                        <tr>
+                            <td><code>blockHeight: number</code></td>
+                            <td>Height of the new block</td>
+                        </tr>
+                        <tr>
+                            <td><code>blockTime: number</code></td>
+                            <td>Timestamp of the new block</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="addEventListener" class="content-item">
+            <div class="overview">
+                <h4>addEventListener</h4>
+                <p>Method is used to add a callback method to be triggered on a specified event.</p>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+const fn = (data) => {
+    console.log(`Connected Account: $&#123;data.address&#125;`);
+}
+neoline.addEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
+/* Another */
+const fn = (data) => {
+    console.log(`Connected Account: $&#123;data.detail.address&#125;`);
+}
+window.addEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn) ;
+                </code></pre>
+            </div>
+        </section>
+        <section id="removeEventListener" class="content-item">
+            <div class="overview">
+                <h4>removeEventListener</h4>
+                <p>Method is to remove existing callback event listeners.</p>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
+/* Another */
+window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
+
+                </code></pre>
+            </div>
+        </section>
+        <section id="Errors" class="content-item">
+            <div class="overview">
+                <h4>Errors</h4>
+                <p>The NEO dAPI will provide these basic errors. It is up to the wallet provider to provide additional
+                    information if they choose:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error Type</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>NO_PROVIDER</code></td>
+                            <td>Thrown when there is no interface capable of interacting with NEO blockchain</td>
+                        </tr>
+                        <tr>
+                            <td><code>CONNECTION_DENIED</code></td>
+                            <td>Thrown when API provider refuses to execute a transaction (e.g. trying to execute a transaction on an unavialable network)</td>
+                        </tr>
+                        <tr>
+                            <td><code>RPC_ERROR</code></td>
+                            <td>Thrown when a command relying on RPC connection to a network node fails</td>
+                        </tr>
+                        <tr>
+                            <td><code>MALFORMED_INPUT</code></td>
+                            <td>Thrown when an input such as the address is not a valid NEO address</td>
+                        </tr>
+                        <tr>
+                            <td><code>CANCELED</code></td>
+                            <td>Thrown when a user cancels, or refuses the dapps request</td>
+                        </tr>
+                        <tr>
+                            <td><code>INSUFFICIENT_FUNDS</code></td>
+                            <td>Thrown when the action does not have a sufficient balance</td>
+                        </tr>
+                        <tr>
+                            <td><code>FAIL</code></td>
+                            <td>The request failed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </article>
+    <article class="veil">
+        <aside class="catalogue veil-catalogue">
+            <section class="aside-item">
+                <h4 class="read-methods">Getting Started<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <div class="item-content read-methods">
+                    <a href="#startExample">Example</a>
+                </div>
+            </section>
+            <section class="aside-item">
+                <h4 class="read-methods">Read Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <div class="item-content read-methods">
+                    <a href="#getProvider">getProvider</a>
+                    <a href="#getNetworks">getNetworks</a>
+                    <a href="#getAccount">getAccount</a>
+                    <a href="#getPublicKey">getPublicKey</a>
+                    <a href="#getBalance">getBalance</a>
+                    <a href="#getStorage">getStorage</a>
+                    <a href="#invokeRead">invokeRead</a>
+                    <a href="#verifyMessage">verifyMessage</a>
+                    <a href="#getBlock">getBlock</a>
+                    <a href="#getTransaction">getTransaction</a>
+                    <a href="#getApplicationLog">getApplicationLog</a>
+                </div>
+            </section>
+            <section class="aside-item">
+                <h4 class="write-methods">Write Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <div class="item-content write-methods">
+                    <a href="#send">send</a>
+                    <a href="#invoke">invoke</a>
+                    <a href="#invokeMulti">invokeMulti</a>
+                    <a href="#signMessage">signMessage</a>
+                    <a href="#deploy">deploy</a>
+                </div>
+            </section>
+            <section class="aside-item">
+                <h4 class="events">Events<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <div class="item-content events">
+                    <a href="#READY">READY</a>
+                    <a href="#ACCOUNT_CHANGED">ACCOUNT_CHANGED</a>
+                    <a href="#CONNECTED">CONNECTED</a>
+                    <a href="#DISCONNECTED">DISCONNECTED</a>
+                    <a href="#NETWORK_CHANGED">NETWORK_CHANGED</a>
+                    <a href="#BLOCK_HEIGHT_CHANGED">BLOCK_HEIGHT_CHANGED</a>
+                    <a href="#TRANSACTION_CONFIRMED">TRANSACTION_CONFIRMED</a>
+                </div>
+            </section>
+            <section class="aside-item">
+                <h4 class="events-methods">Event Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <div class="item-content events-methods">
+                    <a href="#addEventListener">addEventListener</a>
+                    <a href="#removeEventListener">removeEventListener</a>
+                </div>
+            </section>
+            <section class="aside-item">
+                <h4 class="errors">Errors<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <div class="item-content errors">
+                    <a href="#Errors">Errors</a>
+                </div>
+            </section>
+        </aside>
+    </article>
+</body>
+
+</html>
