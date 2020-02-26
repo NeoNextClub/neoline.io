@@ -131,6 +131,36 @@ module.exports = {
             filename: 'en/help/index.html'
         }),
         new HtmlWebpackPlugin({
+            template: 'src/sites/kr/help.html',
+            inject: 'body',
+            xhtml: true,
+            metadata: {
+                isDevServer: false
+            },
+            minify: {
+              caseSensitive: true,
+              collapseWhitespace: true,
+              keepClosingSlash: true
+            },
+            chunks: ['other'],
+            filename: 'kr/help/index.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/sites/jp/help.html',
+            inject: 'body',
+            xhtml: true,
+            metadata: {
+                isDevServer: false
+            },
+            minify: {
+              caseSensitive: true,
+              collapseWhitespace: true,
+              keepClosingSlash: true
+            },
+            chunks: ['other'],
+            filename: 'jp/help/index.html'
+        }),
+        new HtmlWebpackPlugin({
             template: 'src/sites/zh/privacy.html',
             inject: 'body',
             xhtml: true,
