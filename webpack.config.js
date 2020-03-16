@@ -11,6 +11,7 @@ module.exports = {
         "tutorial": "./src/scripts/tutorial.js",
         "dapi": "./src/scripts/dapi.js",
         "other": "./src/scripts/other.js",
+        "help": "./src/scripts/help.js"
     },
     devtool: false,
     resolve: {
@@ -112,7 +113,7 @@ module.exports = {
               collapseWhitespace: true,
               keepClosingSlash: true
             },
-            chunks: ['other'],
+            chunks: ['help'],
             filename: 'help/index.html'
         }),
         new HtmlWebpackPlugin({
@@ -127,7 +128,7 @@ module.exports = {
               collapseWhitespace: true,
               keepClosingSlash: true
             },
-            chunks: ['other'],
+            chunks: ['help'],
             filename: 'en/help/index.html'
         }),
         new HtmlWebpackPlugin({
@@ -142,7 +143,7 @@ module.exports = {
               collapseWhitespace: true,
               keepClosingSlash: true
             },
-            chunks: ['other'],
+            chunks: ['help'],
             filename: 'kr/help/index.html'
         }),
         new HtmlWebpackPlugin({
@@ -157,7 +158,7 @@ module.exports = {
               collapseWhitespace: true,
               keepClosingSlash: true
             },
-            chunks: ['other'],
+            chunks: ['help'],
             filename: 'jp/help/index.html'
         }),
         new HtmlWebpackPlugin({

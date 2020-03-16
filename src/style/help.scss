@@ -1,0 +1,82 @@
+.content {
+    padding: 15px;
+    line-height: 1.5;
+}
+.title {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(48, 52, 51, 1);
+    margin-bottom: 15px;
+}
+.tip {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(175, 182, 190, 1);
+    margin-bottom: 34px;
+}
+.category {
+    .category-title {
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(67, 69, 67, 1);
+        margin-bottom: 15px;
+        padding-left: 2px;
+    }
+    .category-content {
+        font-weight: 400;
+        .item-title {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: 50px;
+            background: rgba(245, 245, 245, 1);
+            border-radius: 10px;
+            font-size: 14px;
+            color: rgba(67, 69, 67, 1);
+            padding: 0 15px;
+            padding-right: 30px;
+            margin-bottom: 12px;
+            position: relative;
+            .down {
+                position: absolute;
+                right: 15px;
+                top: 19px;
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: url('/assets/images/help-down.png');
+                background-size: 100% auto;
+                background-position: center;
+                background-repeat: no-repeat;
+                transform: rotate(-180deg);
+                transition: all 0.4s ease-in-out;
+                &.active {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+        .item-content {
+            display: none;
+            font-size: 13px;
+            color: rgba(127, 137, 147, 1);
+            margin-bottom: 20px;
+            padding: 0 15px;
+            .text-indent {
+                text-indent: -1em;
+                padding: 0 13px;
+            }
+            .text-indent2 {
+                text-indent: -2em;
+                padding: 0 26px;
+            }
+        }
+    }
+}
+
+.contact {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(175, 182, 190, 1);
+    padding: 45px 20px;
+    text-align: center;
+}
