@@ -69,6 +69,16 @@
                 text-indent: -2em;
                 padding: 0 26px;
             }
+            .inline-img {
+                background: #5fcab0;
+                display: inline-block;
+                height: 25px;
+                border-radius: 11px 0 0 11px;
+                vertical-align: bottom;
+                img {
+                    height: 25px;
+                }
+            }
         }
     }
 }
