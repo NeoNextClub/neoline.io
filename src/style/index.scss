@@ -85,6 +85,9 @@ section.summary {
                         display: block !important;
                     }
                 }
+                &.android-subitem:hover {
+                    box-shadow: none;
+                }
             }
             & > li:first-child {
                 margin-right: 35px;
@@ -102,6 +105,9 @@ section.summary {
                     &:last-child {
                         display: none;
                         background: #ccedf8;
+                        &.android-download {
+                            display: block;
+                        }
                         a {
                             color: #00a7db;
                         }
