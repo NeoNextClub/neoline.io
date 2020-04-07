@@ -129,6 +129,9 @@ section.summary {
                             display: block;
                             font-size: 10px;
                         }
+                        .small-font {
+                            font-size: 12px;
+                        }
                     }
                 }
             }
@@ -489,6 +492,7 @@ footer {
                 color: #afafaf;
                 font-size: 14px;
                 font-weight: 400;
+                white-space: nowrap;
                 span {
                     display: block;
                     height: 36px;
