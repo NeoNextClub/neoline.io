@@ -19,62 +19,57 @@ article.container {
     margin-bottom: 30px;
 }
 
-header {
-    margin: 0 auto;
-    max-width: 1200px;
-    height: 70px;
-    position: relative;
-    img {
-        height: 30px;
-        vertical-align: middle;
-        position: absolute;
-        left: 10px;
-        top: 20px;
-    }
-    a {
-        position: absolute;
-        right: 10px;
-        top: 17px;
-        border: none;
-        background: #00a7db;
-        height: 36px;
-        line-height: 36px;
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 18px;
-        outline: none;
-        color: #fff;
-        &:hover {
-            opacity: 0.7;
-        }
-    }
-}
-
 section.summary {
-    height: 640px;
+    height: 730px;
     width: 100%;
-    margin-top: 20px;
-    background-image: url('/assets/images/bg-top.png');
-    background-size: auto 100%;
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    .content {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(6, 204, 171, 0.1));
+    header {
         max-width: 1200px;
         margin: 0 auto;
-        padding-left: 20px;
+        height: 70px;
+        position: relative;
+        img {
+            height: 30px;
+            vertical-align: middle;
+            position: absolute;
+            left: 10px;
+            top: 20px;
+        }
+        a {
+            position: absolute;
+            right: 10px;
+            top: 17px;
+            border: none;
+            background: linear-gradient(70deg, #06ccab, #9ad6cf);
+            height: 36px;
+            line-height: 36px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 18px;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+    .content {
+        text-align: center;
         img.logo {
-            height: 81px;
-            margin-bottom: 31px;
-            margin-top: 150px;
+            height: 161px;
+            margin-top: 209px;
+            margin-bottom: 50px;
         }
-        p {
-            margin-bottom: 89px;
-            font-weight: 500;
-            color: rgba(51, 51, 51, 1);
-            max-width: 600px;
-        }
+        // p {
+        //     margin-bottom: 89px;
+        //     font-weight: 500;
+        //     color: rgba(51, 51, 51, 1);
+        //     max-width: 600px;
+        // }
         ul.download-group {
             display: flex;
+            justify-content: center;
             & > li {
                 display: inline-block;
                 border-radius: 10px;
@@ -84,9 +79,6 @@ section.summary {
                     ul.subitem li {
                         display: block !important;
                     }
-                }
-                &.android-subitem:hover {
-                    box-shadow: none;
                 }
             }
             & > li:first-child {
@@ -104,12 +96,9 @@ section.summary {
                     }
                     &:last-child {
                         display: none;
-                        background: #ccedf8;
-                        &.android-download {
-                            display: block;
-                        }
+                        background: #ecfbf1;
                         a {
-                            color: #00a7db;
+                            color: #06ccab;
                         }
                     }
                     a {
@@ -244,7 +233,7 @@ section.summary {
                 }
                 &:last-child {
                     background: #ccedf8;
-                    color: #00a7db;
+                    color: #06ccab;
                 }
             }
         }
@@ -331,11 +320,14 @@ section.wallet {
         max-width: 1200px;
         height: 100%;
         margin: 0 auto;
-        background-image: url('/assets/images-en/wallet-bg.png');
+        background-image: url('/assets/images/wallet-bg.png');
         background-size: auto 370px;
         background-position: center;
         background-repeat: no-repeat;
         position: relative;
+        &.en {
+            background-image: url('/assets/images-en/wallet-bg.png');
+        }
         .right {
             display: inline-block;
             position: absolute;
@@ -516,7 +508,6 @@ footer {
                     background-image: url('/assets/images/docs.png');
                 }
                 &:hover {
-                    // background: #00a7db;
                     color: #fff;
                     font-size: 16px;
                     font-weight: bold;
@@ -540,7 +531,7 @@ footer {
         width: 20%;
         height: 170px;
         padding: 20px;
-        background: #00a7db;
+        background: #06ccab;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -690,7 +681,9 @@ footer {
             padding: 0 10px;
             img.logo {
                 margin-top: 50px;
-                height: 60px;
+                // height: 60px;
+                width: 80vw;
+                height: auto;
             }
             .title {
                 margin-bottom: 50px;
