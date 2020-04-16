@@ -3,19 +3,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-
 module.exports = {
-    mode: "production",
+    mode: 'production',
     entry: {
-        "index": "./src/scripts/index.js",
-        "tutorial": "./src/scripts/tutorial.js",
-        "dapi": "./src/scripts/dapi.js",
-        "other": "./src/scripts/other.js",
-        "help": "./src/scripts/help.js"
+        index: './src/scripts/index.js',
+        tutorial: './src/scripts/tutorial.js',
+        dapi: './src/scripts/dapi.js',
+        other: './src/scripts/other.js',
+        help: './src/scripts/help.js'
     },
     devtool: false,
     resolve: {
-        extensions: [".js"]
+        extensions: ['.js']
     },
     module: {
         rules: [
@@ -24,7 +23,7 @@ module.exports = {
                 use: [
                     'style-loader',
                     {
-                        loader: 'css-loader',
+                        loader: 'css-loader'
                     },
                     'sass-loader?sourceMap'
                 ]
@@ -36,9 +35,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CopyWebpackPlugin([
-            { from: 'src/assets', to: 'assets' },
-        ]),
+        new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
         new HtmlWebpackPlugin({
             template: 'src/sites/zh/index.html',
             inject: 'body',
@@ -48,9 +45,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['index'],
             filename: 'index.html'
@@ -58,15 +55,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'src/sites/en/index.html',
             inject: 'body',
-            favicon: 'favicon.ico',
             xhtml: true,
             metadata: {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['index'],
             filename: 'en/index.html'
@@ -79,9 +75,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['tutorial'],
             filename: 'tutorial/index.html'
@@ -94,9 +90,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['dapi'],
             filename: 'dapi/index.html'
@@ -109,9 +105,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['help'],
             filename: 'help/index.html'
@@ -124,9 +120,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['help'],
             filename: 'en/help/index.html'
@@ -139,9 +135,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['help'],
             filename: 'kr/help/index.html'
@@ -154,9 +150,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['help'],
             filename: 'jp/help/index.html'
@@ -169,9 +165,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['other'],
             filename: 'privacy/index.html'
@@ -184,9 +180,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['other'],
             filename: 'en/privacy/index.html'
@@ -199,9 +195,9 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['other'],
             filename: 'agreement/index.html'
@@ -214,13 +210,13 @@ module.exports = {
                 isDevServer: false
             },
             minify: {
-              caseSensitive: true,
-              collapseWhitespace: true,
-              keepClosingSlash: true
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
             },
             chunks: ['other'],
             filename: 'en/agreement/index.html'
-        }),
+        })
     ],
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -228,4 +224,4 @@ module.exports = {
         sourceMapFilename: '[file].map',
         chunkFilename: '[name].[chunkhash].chunk.js'
     }
-}
+};
