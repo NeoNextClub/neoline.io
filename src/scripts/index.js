@@ -4,7 +4,7 @@ import * as $ from 'jquery';
 let assetLen = 3;
 let assetIndex = 1;
 let android_google = 'https://play.google.com/store/apps/details?id=com.neoline.app';
-let android_package = 'https://dl.neoline.cn/app/download';
+let android_package = 'https://cdn-oss.neoline.cn/downloads/NeoLine.apk';
 let ios_store = 'https://itunes.apple.com/cn/app/id1484779135?mt=8';
 let ios_testflight = 'https://testflight.apple.com/join/9MloO2jC';
 
