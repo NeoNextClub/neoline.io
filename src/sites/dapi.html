@@ -122,31 +122,11 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                             <td>A list of all applicable NEPs which the wallet provider supports</td>
                         </tr>
                         <tr>
-                            <!-- <td><code>extra: <a href="#getProvider-Extra"><img class="tip" src="/assets/images/dapi/i.svg" alt="i"></a>ExtraObject</code></td> -->
                             <td><code>extra: object</code></td>
                             <td>This object can contain any attributes specific to the dapi provider, such as an app theme</td>
                         </tr>
                     </tbody>
                 </table>
-                <!-- <p id="getProvider-Extra">ExtraObject</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>theme: string</code></td>
-                            <td>UI theme of the provider</td>
-                        </tr>
-                        <tr>
-                            <td><code>currency: string</code></td>
-                            <td>Base currency set by user</td>
-                        </tr>
-                    </tbody>
-                </table> -->
                 <h5>Error Response</h5>
                 <table>
                     <thead>
@@ -555,11 +535,6 @@ neoline.getPublicKey()
                             <td><code>unspent: UTXO[]?</code></td>
                             <td>If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS</td>
                         </tr>
-                        <!-- <tr><a href="#getProvider-Extra">
-                            <td><code>unspent?: <img class="tip" src="/assets/images/dapi/i.svg" alt="i">UTXO[]</code></td>
-                            <td>If fetch utxo's was turned on then the utxo array will be returned for the native assets
-                                NEO and GAS</td>
-                        </tr> -->
                     </tbody>
                 </table>
                 <p>UTXO</p>
@@ -1473,9 +1448,6 @@ neoline.getApplicationLog({
                         </tr>
                     </tbody>
                 </table>
-                <!-- <p>It is reccommended that the DAPP take appropriate levels of risk prevention when accepting
-                    transactions. The dapp can query the mempool of a known node to ensure that the transaction will
-                    indeed be broadcast on the network.</p> -->
                 <p>In the case where the "broadcastOverride" input argument is set to True.</p>
                 <table>
                     <thead>
@@ -2526,27 +2498,11 @@ neoline.deploy({
                             <td>A list of all applicable NEPs which the wallet provider supports</td>
                         </tr>
                         <tr>
-                            <!-- <td><code>extra: <img class="tip" src="/assets/images/dapi/i.svg" alt="i">ExtraObject</code></td> -->
                             <td><code>extra: object</code></td>
                             <td>Provider specific attributes</td>
                         </tr>
                     </tbody>
                 </table>
-                <!-- <p>ExtraObject</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>theme: string</code></td>
-                            <td>UI theme of the provider</td>
-                        </tr>
-                    </tbody>
-                </table> -->
             </div>
         </section>
         <section id="ACCOUNT_CHANGED" class="content-item">
