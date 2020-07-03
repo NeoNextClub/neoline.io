@@ -3,3 +3,4 @@ dist
 package-lock.json
 deploy.sh
 dist.tar.gz
+.DS_Store
