@@ -404,6 +404,35 @@ section.wallet-import {
     }
 }
 
+section.newsletter-subscribe{
+    .content{
+        text-align: center;
+        background-color: #06CCAB;
+        color:#fff;
+        .title{
+            padding-top:95px;
+            font-size:44px;
+        }
+        .detail{
+            margin:30px 0;
+            font-size:16px;
+        }
+        .register{
+            margin-bottom: 90px;
+            display: inline-block;
+            width: 200px;
+            height: 60px;
+            line-height: 60px;
+            background-color: #2B393F;
+            box-shadow: 0px 8px 32px 0px rgba(43, 57, 63, 0.2);
+            border-radius: 30px;
+            color:#fff;
+            font-size:18px;
+            cursor: pointer;
+        }
+    }
+}
+
 footer {
     background: #333;
     position: relative;
@@ -620,6 +649,102 @@ footer {
         border-radius: 5px;
         height: 36px;
         border: none;
+    }
+}
+
+.pupop-box{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    .pupop-content{
+        padding: 40px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        width:360px;
+        background-color: #fff;
+        box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.14);
+        border-radius: 10px;
+        .title{
+            font-size: 24px;
+            font-weight: 500;
+            color: #434543;
+            line-height: 25px;
+            .pup-close{
+                margin:7px -10px 0 0;
+                float: right;
+            }
+        }
+        .ipt-title{
+            margin:35px 0 15px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #303433;
+        }
+        #email{
+            margin-bottom:14px;
+            width: 280px;
+            height: 50px;
+            background-color: #FAFAFA;
+            border-radius: 10px;
+            border:none;
+            font-size:14px;
+            color:#ced1da;
+            text-indent:18px;
+            &:focus{
+                border: 1px solid #06CCAB;
+            }
+            &::-webkit-input-placeholder {
+                color:#ced1da;
+            } 
+            &:-moz-placeholder {
+                color:#ced1da;
+            } 
+            &::-moz-placeholder {
+                color:#ced1da;
+            } 
+            &:-ms-input-placeholder {
+                color:#ced1da;
+            } 
+        }
+        .detail{
+            font-size: 14px;
+            font-weight: 400;
+            color: #7F8993;
+            line-height: 24px;
+            .text-indent{
+                display: inline-block;
+                text-indent:10px;
+            }
+            [id^="checkbox-"] + label {
+                background-image: url('/assets/images/newsletter-unchecked.png');
+                padding: 9px;
+                border-radius: 3px;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            [id="checkbox-1"]:checked + label {
+                background-image: url('/assets/images/newsletter-checked.png');
+            }
+            [id="checkbox-2"]:checked + label {
+                background-image: url('/assets/images/newsletter-checked.png');
+            }
+        }
+        .submit{
+            margin-top:70px;
+            width: 280px;
+            height: 50px;
+            background: #06CCAB;
+            color:#fff;
+            border-radius: 10px;
+            border:none;
+            &:hover{
+                opacity: 0.7;
+            }
+        }
     }
 }
 
