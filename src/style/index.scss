@@ -653,6 +653,7 @@ footer {
 }
 
 .pupop-box{
+    display: none;
     position: fixed;
     top:0;
     left:0;
@@ -715,21 +716,15 @@ footer {
             font-weight: 400;
             color: #7F8993;
             line-height: 24px;
-            .text-indent{
-                display: inline-block;
-                text-indent:10px;
-            }
             [id^="checkbox-"] + label {
-                background-image: url('/assets/images/newsletter-unchecked.png');
+                margin-right:10px;
                 padding: 9px;
+                background-image: url('/assets/images/newsletter-unchecked.png');
                 border-radius: 3px;
                 display: inline-block;
                 vertical-align: middle;
             }
-            [id="checkbox-1"]:checked + label {
-                background-image: url('/assets/images/newsletter-checked.png');
-            }
-            [id="checkbox-2"]:checked + label {
+            [id="checkbox-1"]:checked + label{
                 background-image: url('/assets/images/newsletter-checked.png');
             }
         }

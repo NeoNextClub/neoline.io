@@ -105,25 +105,24 @@ function is_weixn() {
         return false;
     }
 }
+
 $('.register').on('click',function(){
-    pupopTip();
+    $('.pupop-box').show(500)
 })
-function pupopTip() {
-    let popup = $('<div class="pupop-box">'
-        +'<div class="pupop-content">'+
-            '<form>'+
-                '<div class="title">订阅电子报<img class="pup-close" src="/assets/images/newsletter-close.png" alt=""></div>'+
-                '<div class="ipt-title">E-MAIL</div>'+
-                '<input type="email" id="email" placeholder="请填写您的邮箱地址" required style="">'+
-                '<div class="detail"><input type="checkbox" value="0" id="checkbox-1" style="display: none;"><label for="checkbox-1"></label><span class="text-indent">从NeoLine团队获取最新更新</span></div>'+
-                '<div class="detail"><input type="checkbox" value="0" id="checkbox-2" style="display: none;"><label for="checkbox-2"></label><p>您可以随时取消订阅这些通讯。 有关如何退订，我们的隐私惯例以及我们如何致力于保护和尊重您的隐私的更多信息，请查看我们的隐私政策。</p></div>'+
-            '</form>'+
-            '<button class="submit">提交</button>'+
-        '</div>'+
-    '</div>')
-    $("body").append(popup);
-    $('.pupop-box').fadeIn();
-    $('body').on('click','.pup-close',function() {
-        $('.pupop-box').fadeOut(function () {$(this).remove()})
-    })
-}
+
+$('body').on('click','.pupop-box',function(e) {
+    event.stopPropagation()
+    if($(e.target).hasClass("pupop-box")){
+        $('.pupop-box').hide(500)
+    }
+})
+
+$('body').on('click','.pup-close',function(){
+    $('.pupop-box').hide(500)
+})
+
+$('body').on('click','.submit',function (){
+    $.each($('.detail input:checkbox:checked'),function(){
+        $('input[type=checkbox]:checked')
+    });
+})
