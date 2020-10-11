@@ -157,10 +157,18 @@
             <div class="pupop-content">
                 <div class="title">订阅电子报<img class="pup-close" src="/assets/images/newsletter-close.png" alt=""></div>
                 <form>
-                    <div class="ipt-title">E-MAIL</div>
-                    <input type="email" id="email" placeholder="请填写您的邮箱地址" required>
-                    <div class="detail"><input type="checkbox" id="checkbox-1" style="display: none;"><label for="checkbox-1"></label><span class="text-indent">从NeoLine团队获取最新更新</span></div>
-                    <div class="detail"><p>您可以随时取消订阅这些通讯。 有关如何退订，我们的隐私惯例以及我们如何致力于保护和尊重您的隐私的更多信息，请查看我们的隐私政策。</p></div>
+                    <div class="email">
+                        <p class="title">E-MAIL</p>
+                        <input type="email" id="email" placeholder="请填写您的邮箱地址" required>
+                        <p class="warning">请填写此必填字段。</p>
+                    </div>
+                    <div class="updata">
+                        <input type="checkbox" id="updata" style="display: none;">
+                        <label for="updata"></label>
+                        <span>从NeoLine团队获取最新更新</span>
+                        <p class="warning">请填写此必填字段。</p>
+                        <p class="detail">您可以随时取消订阅这些通讯。 有关如何退订，我们的隐私惯例以及我们如何致力于保护和尊重您的隐私的更多信息，请查看我们的隐私政策。</p>
+                    </div>
                 </form>
                 <button class="submit">提交</button>
             </div>

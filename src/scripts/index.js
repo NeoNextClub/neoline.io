@@ -121,6 +121,40 @@ $('body').on('click','.pup-close',function(){
     $('.pupop-box').hide(500)
 })
 
+
+function emailRule(){
+    let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    if ($(".email #email").val() == '') {
+        $(".email .warning").show();
+        $("#email").addClass('email-error');
+        $(".email #email").focus();
+    }
+    else {
+        if (reg.test($(".email #email").val()) == false) {
+            $(".email .warning").text("邮箱格式不正确，请重新填写");
+            $("#email").addClass('email-error');
+            $(".email #email").focus();
+        }
+        else {
+            $(".email .warning").hide();
+            $("#email").removeClass('email-error');
+        }
+    }
+}
+
+$(".email #email").blur(function () {
+    emailRule();
+})
+
+$("body").on("click","#updata",function () {
+    let checked = $(this)[0].checked
+    if(checked){
+        $('.updata .warning').hide();
+    }else{
+        $('.updata .warning').show();
+    }
+})
+
 $('body').on('click','.submit',function (){
     $.each($('.detail input:checkbox:checked'),function(){
         $('input[type=checkbox]:checked')
