@@ -124,20 +124,23 @@ $('body').on('click','.pup-close',function(){
 
 function emailRule(){
     let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    if ($("#email").val() == '') {
+    if ($(".email #email").val() == '') {
+        $(".email .format-error").hide();
         $(".email .warning").show();
-        $("#email").addClass('email-error');
+        $(".email #email").addClass('email-error');
         $("#email").focus();
     }
     else {
-        if (reg.test($("#email").val()) == false) {
-            $(".email .warning").text("Email format is not correct, please re-enter.");
-            $("#email").addClass('email-error');
+        if (reg.test($(".email #email").val()) == false) {
+            $(".email .warning").hide();
+            $(".email .format-error").show();
+            $(".email #email").addClass('email-error');
             $("#email").focus();
         }
         else {
             $(".email .warning").hide();
-            $("#email").removeClass('email-error');
+            $(".email .format-error").hide();
+            $(".email #email").removeClass('email-error');
         }
     }
 }
