@@ -129,6 +129,7 @@ function emailRule(){
         $(".email .warning").show();
         $(".email #email").addClass('email-error');
         $("#email").focus();
+        return false;
     }
     else {
         if (reg.test($(".email #email").val()) == false) {
@@ -136,11 +137,13 @@ function emailRule(){
             $(".email .format-error").show();
             $(".email #email").addClass('email-error');
             $("#email").focus();
+            return false;
         }
         else {
             $(".email .warning").hide();
             $(".email .format-error").hide();
             $(".email #email").removeClass('email-error');
+            return true;
         }
     }
 }
@@ -150,11 +153,12 @@ $(".email #email").blur(function () {
 })
 
 function checkRule(){
-    let checked = $("#updata")[0].checked
-    if(checked){
+    if($("#updata")[0]["checked"]){
         $('.updata .warning').hide();
+        return false;
     }else{
         $('.updata .warning').show();
+        return true;
     }
 }
 
@@ -163,9 +167,8 @@ $("body").on("click","#updata",function () {
 })
 
 $('body').on('click','.submit',function (){
-    emailRule();
-    checkRule();
-    $.each($('.detail input:checkbox:checked'),function(){
-        $('input[type=checkbox]:checked')
-    });
+    if(checkRule() && emailRule()){
+        // email
+        $(".email #email").val()
+    }
 })
