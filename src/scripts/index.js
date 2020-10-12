@@ -124,16 +124,16 @@ $('body').on('click','.pup-close',function(){
 
 function emailRule(){
     let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    if ($(".email #email").val() == '') {
+    if ($("#email").val() == '') {
         $(".email .warning").show();
         $("#email").addClass('email-error');
-        $(".email #email").focus();
+        $("#email").focus();
     }
     else {
-        if (reg.test($(".email #email").val()) == false) {
-            $(".email .warning").text("邮箱格式不正确，请重新填写");
+        if (reg.test($("#email").val()) == false) {
+            $(".email .warning").text("Email format is not correct, please re-enter.");
             $("#email").addClass('email-error');
-            $(".email #email").focus();
+            $("#email").focus();
         }
         else {
             $(".email .warning").hide();
@@ -146,16 +146,22 @@ $(".email #email").blur(function () {
     emailRule();
 })
 
-$("body").on("click","#updata",function () {
-    let checked = $(this)[0].checked
+function checkRule(){
+    let checked = $("#updata")[0].checked
     if(checked){
         $('.updata .warning').hide();
     }else{
         $('.updata .warning').show();
     }
+}
+
+$("body").on("click","#updata",function () {
+    checkRule();
 })
 
 $('body').on('click','.submit',function (){
+    emailRule();
+    checkRule();
     $.each($('.detail input:checkbox:checked'),function(){
         $('input[type=checkbox]:checked')
     });
