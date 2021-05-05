@@ -33,7 +33,7 @@
                 <a href="#getStorage">getStorage</a>
                 <a href="#invokeRead">invokeRead</a>
                 <a href="#invokeReadMulti">invokeReadMulti</a>
-                <!-- <a href="#verifyMessage">verifyMessage</a> -->
+                <a href="#verifyMessage">verifyMessage</a>
                 <a href="#getBlock">getBlock</a>
                 <a href="#getTransaction">getTransaction</a>
                 <a href="#getApplicationLog">getApplicationLog</a>
@@ -791,6 +791,101 @@ neolinen3.invokeReadMulti({
         ]
     }
 ]
+    </code></pre>
+            </div>
+        </section>
+        <section id="verifyMessage" class="content-item">
+            <div class="overview">
+                <h4>verifyMessage</h4>
+                <p>Returns whether the provided signature data matches the provided message and was signed by the
+                    account of the provided public key.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>message: string</code></td>
+                            <td>Salt prefix + original message</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Signed message</td>
+                        </tr>
+                        <tr>
+                            <td><code>publicKey: string</code></td>
+                            <td>Public key of account that signed message</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>result: boolean</code></td>
+                            <td>Whether the provided signature matches the provided message and public key</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.verifyMessage({
+  message: 'Hello world',
+  data: 'be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd',
+  publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
+})
+.then(result => {
+  console.log('Signature data matches provided message and public key: ' + JSON.stringify(result));
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  result: true
+}
     </code></pre>
             </div>
         </section>
@@ -2386,7 +2481,7 @@ window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
                     <a href="#getStorage">getStorage</a>
                     <a href="#invokeRead">invokeRead</a>
                     <a href="#invokeReadMulti">invokeReadMulti</a> 
-                    <!-- <a href="#verifyMessage">verifyMessage</a> -->
+                    <a href="#verifyMessage">verifyMessage</a>
                     <a href="#getBlock">getBlock</a>
                     <a href="#getTransaction">getTransaction</a>
                     <a href="#getApplicationLog">getApplicationLog</a>
