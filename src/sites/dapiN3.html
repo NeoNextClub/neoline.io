@@ -170,40 +170,38 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                 <pre><code class="language-js">/* Example */
 neolinen3.getProvider()
 .then(provider => {
-  const {
-    name,
-    website,
-    version,
-    compatibility,
-    extra
-  } = provider;
+    const {
+        name,
+        website,
+        version,
+        compatibility,
+        extra
+    } = provider;
 
-  console.log('Provider name: ' + name);
-  console.log('Provider website: ' + website);
-  console.log('Provider dAPI version: ' + version);
-  console.log('Provider dAPI compatibility: ' + JSON.stringify(compatibility));
-  console.log('Extra provider specific atributes: ' + JSON.stringify(compatibility));
+    console.log('Provider name: ' + name);
+    console.log('Provider website: ' + website);
+    console.log('Provider dAPI version: ' + version);
+    console.log('Provider dAPI compatibility: ' + JSON.stringify(compatibility));
+    console.log('Extra provider specific atributes: ' + JSON.stringify(compatibility));
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp.');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'CONNECTION_DENIED':
+            console.log('The user rejected the request to connect with your dApp.');
+            break;
+    }
 });
 
 /* Example Response */
 {
-  name: 'Awesome Wallet',
-  website: 'https://www.neoline.io/',
-  version: '1.0.0',
-  compatibility: [
-  ],
-  extra: {
-  }
+    name: 'Awesome Wallet',
+    website: 'https://www.neoline.io/',
+    version: '1.0.0',
+    compatibility: [],
+    extra: {}
 }
 </code></pre>
             </div>
@@ -295,46 +293,46 @@ neolinen3.getProvider()
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolinen3.getBalance({
-  params: [
-    {
-        "address": "NdJqYNVK99srFABQDLPdrpz2By1RX1sLvr",
-        "assetIds":[
-            "0xd2a4cff31913016155e38e474a2c06d08be276cf", 
-            "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"
-        ]
-    },
-    {
-        "address": "NSnoQP2nHddGTWou4CntbgZQDNL7Y6Kn2M",
-        "assetIds":[]
-    },
-    {
-        "address": "Nf5ZiYimhx9AMgVC9ety1DEhPRseDYik5z",
-        "assetIds":["0xc938a3ab4a0edce9400788697ef635843b14a13a"]
-    }
-  ]
+    params: [
+        {
+            "address": "NdJqYNVK99srFABQDLPdrpz2By1RX1sLvr",
+            "assetIds":[
+                "0xd2a4cff31913016155e38e474a2c06d08be276cf", 
+                "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"
+            ]
+        },
+        {
+            "address": "NSnoQP2nHddGTWou4CntbgZQDNL7Y6Kn2M",
+            "assetIds":[]
+        },
+        {
+            "address": "Nf5ZiYimhx9AMgVC9ety1DEhPRseDYik5z",
+            "assetIds":["0xc938a3ab4a0edce9400788697ef635843b14a13a"]
+        }
+    ]
 })
 .then((results) => {
-  Object.keys(results).forEach(address => {
-    const balances = results[address];
-    balances.forEach(balance => {
-      const { assetID, symbol, amount } = balance
+    Object.keys(results).forEach(address => {
+        const balances = results[address];
+        balances.forEach(balance => {
+            const { assetID, symbol, amount } = balance
 
-      console.log('Address: ' + address);
-      console.log('Asset ID: ' + assetID);
-      console.log('Asset symbol: ' + symbol);
-      console.log('Amount: ' + amount);
+            console.log('Address: ' + address);
+            console.log('Asset ID: ' + assetID);
+            console.log('Asset symbol: ' + symbol);
+            console.log('Amount: ' + amount);
+        });
     });
-  });
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'CONNECTION_DENIED':
+            console.log('The user rejected the request to connect with your dApp');
+            break;
+    }
 });
 
 // output
@@ -427,30 +425,30 @@ neolinen3.getBalance({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolinen3.getStorage({
-  scriptHash: '0x006b26dd0d2aa076b11082847a094772450f05af',
-  key: 'token0',
+    scriptHash: '0x006b26dd0d2aa076b11082847a094772450f05af',
+    key: 'token0',
 })
 .then(result => {
-  const value = result;
-  console.log('Storage value: ' + value.result);
+    const value = result;
+    console.log('Storage value: ' + value.result);
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_REFUSED':
-      console.log('Connection dApp not connected. Please call the "connect" function.');
-      break;
-    case 'RPC_ERROR':
-      console.log('There was an error when broadcasting this transaction to the network.');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'CONNECTION_REFUSED':
+            console.log('Connection dApp not connected. Please call the "connect" function.');
+            break;
+        case 'RPC_ERROR':
+            console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+    }
 });
 
 /* Example Response */
 {
-  result: 'Lin'
+    result: 'wYCMqLCTIUiax57E8Zd/O9xN3l8='
 }
     </code></pre>
             </div>
@@ -560,9 +558,9 @@ neolinen3.getStorage({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolinen3.invokeRead({
-  scriptHash: '0xd2a4cff31913016155e38e474a2c06d08be276cf',
-  operation: 'transfer',
-  args: [
+    scriptHash: '0xd2a4cff31913016155e38e474a2c06d08be276cf',
+    operation: 'transfer',
+    args: [
         {
             "type": "Hash160",
             "value": "0xebae4ab3f21765e5f604dfdd590fdf142cfb89fa"
@@ -579,13 +577,13 @@ neolinen3.invokeRead({
             "type": "String",
             "value": ""
         }
-  ],
-  signers: [
+    ],
+    signers: [
         {
-        account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
-        scopes: 1
+            account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
+            scopes: 1
         }
-  ],
+    ],
 })
 .then(result => {
   console.log('Read invocation result: ' + JSON.stringify(result));
@@ -593,14 +591,14 @@ neolinen3.invokeRead({
 .catch(({type: string, description: string, data: any}) => {
   switch(type) {
     case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
+        console.log('No provider available.');
+        break;
     case 'CONNECTION_REFUSED':
-      console.log('Connection dApp not connected. Please call the "connect" function.');
-      break;
+        console.log('Connection dApp not connected. Please call the "connect" function.');
+        break;
    case 'RPC_ERROR':
-    console.log('There was an error when broadcasting this transaction to the network.');
-    break;
+        console.log('There was an error when broadcasting this transaction to the network.');
+        break;
   }
 });
 
@@ -757,14 +755,14 @@ neolinen3.invokeReadMulti({
 .catch(({type: string, description: string, data: any}) => {
   switch(type) {
     case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
+        console.log('No provider available.');
+        break;
     case 'CONNECTION_REFUSED':
-      console.log('Connection dApp not connected. Please call the "connect" function.');
-      break;
+        console.log('Connection dApp not connected. Please call the "connect" function.');
+        break;
    case 'RPC_ERROR':
-    console.log('There was an error when broadcasting this transaction to the network.');
-    break;
+        console.log('There was an error when broadcasting this transaction to the network.');
+        break;
   }
 });
 
@@ -864,22 +862,22 @@ neolinen3.invokeReadMulti({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neoline.verifyMessage({
-  message: 'Hello world',
-  data: 'be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd',
-  publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
+    message: 'Hello world',
+    data: 'be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd',
+    publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
 })
 .then(result => {
-  console.log('Signature data matches provided message and public key: ' + JSON.stringify(result));
+    console.log('Signature data matches provided message and public key: ' + JSON.stringify(result));
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'CONNECTION_DENIED':
+            console.log('The user rejected the request to connect with your dApp');
+            break;
+    }
 });
 
 /* Example Response */
@@ -937,20 +935,20 @@ neoline.verifyMessage({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolinen3.getBlock({
-  blockHeight: 19690,
+    blockHeight: 19690,
 })
 .then(result => {
-  console.log('Block information: ' + JSON.stringify(result));
+    console.log('Block information: ' + JSON.stringify(result));
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-   case 'RPC_ERROR':
-    console.log('There was an error when broadcasting this transaction to the network.');
-    break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'RPC_ERROR':
+            console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+    }
 });
 
 /* Example Response */
@@ -1025,46 +1023,46 @@ neolinen3.getBlock({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolinen3.getTransaction({
-  txid: '0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474'
+    txid: '0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474'
 })
 .then(result => {
-  console.log('Transaction details: ' + JSON.stringify(result));
+    console.log('Transaction details: ' + JSON.stringify(result));
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-   case 'RPC_ERROR':
-    console.log('There was an error when broadcasting this transaction to the network.');
-    break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'RPC_ERROR':
+            console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+    }
 });
 
 /* Example Response */
 {
-  txID: "0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474,
-  vin: [
-    {
-      address: "AZy5LGtAvwpyJMYq39xX4MsDzAL2B6pEZn",
-      assetID: "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
-      n: 0,
-      txid: "0xd7769e675a47bea100e1e9ea5e1723ec181d90b601884ffc4837844d4ca95103",
-      value: "4"
-    }
-  ],
-  vout: [
-    {
-      address: "AZy5LGtAvwpyJMYq39xX4MsDzAL2B6pEZn",
-      assetID: "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
-      n: 0,
-      value: "4"
-    }
-  ],
-  sys_fee: "0",
-  net_fee: "0",
-  blockIndex: 3840003,
-  blocktime: 1559707311
+    txID: "0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474,
+    vin: [
+        {
+            address: "AZy5LGtAvwpyJMYq39xX4MsDzAL2B6pEZn",
+            assetID: "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
+            n: 0,
+            txid: "0xd7769e675a47bea100e1e9ea5e1723ec181d90b601884ffc4837844d4ca95103",
+            value: "4"
+        }
+    ],
+    vout: [
+        {
+            address: "AZy5LGtAvwpyJMYq39xX4MsDzAL2B6pEZn",
+            assetID: "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
+            n: 0,
+            value: "4"
+        }
+    ],
+    sys_fee: "0",
+    net_fee: "0",
+    blockIndex: 3840003,
+    blocktime: 1559707311
 }
   </code></pre>
             </div>
@@ -1117,20 +1115,20 @@ neolinen3.getTransaction({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolinen3.getApplicationLog({
-  txid: '0xa8184d1fb08199ca8926f992b6253962c4a8047f7d4cfc5ac420e346fa761b03',
+    txid: '0xa8184d1fb08199ca8926f992b6253962c4a8047f7d4cfc5ac420e346fa761b03',
 })
 .then(result => {
-  console.log('Application log of transaction execution: ' + JSON.stringify(result));
+    console.log('Application log of transaction execution: ' + JSON.stringify(result));
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-   case 'RPC_ERROR':
-    console.log('There was an error when broadcasting this transaction to the network.');
-    break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'RPC_ERROR':
+            console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+    }
 });
 
 /* Example Response */
@@ -1217,7 +1215,8 @@ neolinen3.getApplicationLog({
                         </tr>
                         <tr>
                             <td><code>broadcastOverride?: boolean</code></td>
-                            <td>In the case that the dApp would like to be responsible for broadcasting the signed transaction rather than the wallet provider</td>
+                            <td>In the case that the dApp would like to be responsible for broadcasting the signed
+                                transaction rather than the wallet provider</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1237,7 +1236,8 @@ neolinen3.getApplicationLog({
                         </tr>
                         <tr>
                             <td><code>nodeURL: string</code></td>
-                            <td>The node which the transaction was broadcast to. Returned if transaction is broadcast by wallet provider</td>
+                            <td>The node which the transaction was broadcast to. Returned if transaction is broadcast by
+                                wallet provider</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1256,7 +1256,8 @@ neolinen3.getApplicationLog({
                         </tr>
                         <tr>
                             <td><code>signedTx: string</code></td>
-                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument was set to True</td>
+                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument
+                                was set to True</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1287,43 +1288,43 @@ neolinen3.getApplicationLog({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolinen3.send({
-  fromAddress: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
-  toAddress: 'Nb8Jqn7v2qVdbvJJSktTCzTfw15dTJ6Q1K',
-  asset: 'NEO',
-  amount: '1',
-  remark: 'NEOLine',
-  fee: '0.0001',
-  broadcastOverride: false
+    fromAddress: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
+    toAddress: 'Nb8Jqn7v2qVdbvJJSktTCzTfw15dTJ6Q1K',
+    asset: 'NEO',
+    amount: '1',
+    remark: 'NEOLine',
+    fee: '0.0001',
+    broadcastOverride: false
 })
 .then(result => {
-  console.log('Send transaction success!');
-  console.log('Transaction ID: ' + result.txid);
-  console.log('RPC node URL: ' + result.nodeURL);
+    console.log('Send transaction success!');
+    console.log('Transaction ID: ' + result.txid);
+    console.log('RPC node URL: ' + result.nodeURL);
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'RPC_ERROR':
-      console.log('There was an error when broadcasting this transaction to the network.');
-      break;
-    case 'MALFORMED_INPUT':
-      console.log('The receiver address provided is not valid.');
-      break;
-    case 'CANCELED':
-      console.log('The user has canceled this transaction.');
-      break;
-    case 'INSUFFICIENT_FUNDS':
-      console.log('The user has insufficient funds to execute this transaction.');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'RPC_ERROR':
+            console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+        case 'MALFORMED_INPUT':
+            console.log('The receiver address provided is not valid.');
+            break;
+        case 'CANCELED':
+            console.log('The user has canceled this transaction.');
+            break;
+        case 'INSUFFICIENT_FUNDS':
+            console.log('The user has insufficient funds to execute this transaction.');
+            break;
+    }
 });
 
 /* Example Response */
 {
-  txid: '0xd6e4edeb66a75b79bec526d14664017eef9ccee5650c32facb1a4d4fe3640808',
-  nodeURL: 'https://neo3-testnet.neoline.vip'
+    txid: '0xd6e4edeb66a75b79bec526d14664017eef9ccee5650c32facb1a4d4fe3640808',
+    nodeURL: 'https://neo3-testnet.neoline.vip'
 };
       </code></pre>
             </div>
@@ -1366,7 +1367,8 @@ neolinen3.send({
                         </tr>
                         <tr>
                             <td><code>broadcastOverride?: boolean</code></td>
-                            <td>In the case that the dApp would like to be responsible for broadcasting the signed transaction rather than the wallet provider</td>
+                            <td>In the case that the dApp would like to be responsible for broadcasting the signed
+                                transaction rather than the wallet provider</td>
                         </tr>
                         <tr>
                             <td><code>txHashAttributes?: <a href="#Invoke-TxHashAttribute"><img class="tip"
@@ -1455,7 +1457,8 @@ neolinen3.send({
                         </tr>
                         <tr>
                             <td><code>signedTx: string</code></td>
-                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument was set to True</td>
+                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument
+                                was set to True</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1490,12 +1493,12 @@ neolinen3.invoke({
     operation: 'transfer',
     args: [
         {
-        type: "Address",
-        value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            type: "Address",
+            value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
         },
         {
-        type: "Address",
-        value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            type: "Address",
+            value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
         },
         1,
         null,
@@ -1504,29 +1507,29 @@ neolinen3.invoke({
     broadcastOverride: false,
     signers: [
         {
-        account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
-        scopes: 1
+            account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
+            scopes: 1
         }
     ],
     txHashAttributes: []
 })
 .then(result => {
-  console.log('Invoke transaction success!');
-  console.log('Transaction ID: ' + result.txid);
-  console.log('RPC node URL: ' + result.nodeURL);
+    console.log('Invoke transaction success!');
+    console.log('Transaction ID: ' + result.txid);
+    console.log('RPC node URL: ' + result.nodeURL);
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'RPC_ERROR':
-      console.log('There was an error when broadcasting this transaction to the network.');
-      break;
-    case 'CANCELED':
-      console.log('The user has canceled this transaction.');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'RPC_ERROR':
+            console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+        case 'CANCELED':
+            console.log('The user has canceled this transaction.');
+            break;
+    }
 });
 
 /* Example Response */
@@ -1540,7 +1543,8 @@ neolinen3.invoke({
         <section id="invokeMultiple" class="content-item">
             <div class="overview">
                 <h4>invokeMultiple</h4>
-                <p>Invoke Multiple functions the same as Invoke, but accepts inputs to execute multiple invokes in the same transaction.</p>
+                <p>Invoke Multiple functions the same as Invoke, but accepts inputs to execute multiple invokes in the
+                    same transaction.</p>
                 <h5>Input Arguments</h5>
                 <table>
                     <thead>
@@ -1552,7 +1556,8 @@ neolinen3.invoke({
                     <tbody>
                         <tr>
                             <td><code>fee?: string</code></td>
-                            <td>If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee</td>
+                            <td>If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified
+                                the wallet SHOULD allow the user to attach an optional fee</td>
                         </tr>
                         <tr>
                             <td><code>network: string</code></td>
@@ -1565,7 +1570,8 @@ neolinen3.invoke({
                         </tr>
                         <tr>
                             <td><code>broadcastOverride?: boolean</code></td>
-                            <td>If this flag is set to True, the wallet provider will return the signed transaction rather than broadcasting to a node.</td>
+                            <td>If this flag is set to True, the wallet provider will return the signed transaction
+                                rather than broadcasting to a node.</td>
                         </tr>
                         <tr>
                             <td><code>txHashAttributes?: <a href="#invokeMulti-TxHashAttribute"><img class="tip"
@@ -1589,7 +1595,8 @@ neolinen3.invoke({
                         </tr>
                         <tr>
                             <td><code>operation: string</code></td>
-                            <td>The operation on the smart contract that you wish to call. This can be fetched from the contract ABI</td>
+                            <td>The operation on the smart contract that you wish to call. This can be fetched from the
+                                contract ABI</td>
                         </tr>
                         <tr>
                             <td><code>args: <a href="#invokeMulti-Argument"><img class="tip" src="/assets/images/dapi/i.svg"
@@ -1598,7 +1605,8 @@ neolinen3.invoke({
                         </tr>
                         <tr>
                             <td><code>attachedAssets?: AttachedAssets[]</code></td>
-                            <td>Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale</td>
+                            <td>Describes the assets to attach with the smart contract, e.g. attaching assets to mint
+                                tokens during a token sale</td>
                         </tr>
                         <tr>
                             <td><code>triggerContractVerification: bolean?</code></td>
@@ -1668,7 +1676,8 @@ neolinen3.invoke({
                         </tr>
                         <tr>
                             <td><code>nodeURL: string</code></td>
-                            <td>The node which the transaction was broadcast to. Returned if transaction is broadcast by wallet provider</td>
+                            <td>The node which the transaction was broadcast to. Returned if transaction is broadcast by
+                                wallet provider</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1687,7 +1696,8 @@ neolinen3.invoke({
                         </tr>
                         <tr>
                             <td><code>signedTx: string</code></td>
-                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument was set to True</td>
+                            <td>The serialized signed transaction. Only returned if the broadcastOverride input argument
+                                was set to True</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1740,12 +1750,12 @@ neolinen3.invokeMultiple({
             operation: "transfer",
             args: [
                 {
-                type: "Address",
-                value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+                    type: "Address",
+                    value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
                 },
                 {
-                type: "Address",
-                value: "NPsCvedTnzGcwSYuoxjh7Sec5Zem2vgVmX",
+                    type: "Address",
+                    value: "NPsCvedTnzGcwSYuoxjh7Sec5Zem2vgVmX",
                 },
                 1,
                 null
@@ -1763,22 +1773,22 @@ neolinen3.invokeMultiple({
     txHashAttributes: []
 })
 .then(({txid, nodeURL}: InvokeOutput) => {
-  console.log('Invoke transaction success!');
-  console.log('Transaction ID: ' + txid);
-  console.log('RPC node URL: ' + nodeURL);
+    console.log('Invoke transaction success!');
+    console.log('Transaction ID: ' + txid);
+    console.log('RPC node URL: ' + nodeURL);
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case NO_PROVIDER:
-      console.log('No provider available.');
-      break;
-    case RPC_ERROR:
-      console.log('There was an error when broadcasting this transaction to the network.');
-      break;
-    case CANCELED:
-      console.log('The user has canceled this transaction.');
-      break;
-  }
+    switch(type) {
+        case NO_PROVIDER:
+            console.log('No provider available.');
+            break;
+        case RPC_ERROR:
+            console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+        case CANCELED:
+            console.log('The user has canceled this transaction.');
+            break;
+    }
 });
 
 /* Example Response */
@@ -1792,7 +1802,9 @@ neolinen3.invokeMultiple({
         <section id="signMessage" class="content-item">
             <div class="overview">
                 <h4>signMessage</h4>
-                <p>Signs a provided messaged with an account selected by user. A randomized salt prefix is added to the input string before it is signed, and it is encased in a non-executable transaction before signed. This ensures allow compatibility with Ledger devices.</p>
+                <p>Signs a provided messaged with an account selected by user. A randomized salt prefix is added to the
+                    input string before it is signed, and it is encased in a non-executable transaction before signed.
+                    This ensures allow compatibility with Ledger devices.</p>
                 <h5>Input Arguments</h5>
                 <table>
                     <thead>
@@ -1862,35 +1874,35 @@ neolinen3.invokeMultiple({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolinen3.signMessage({
-  message: 'Hello world'
+    message: 'Hello world'
 })
 .then(signedMessage => {
-  const {
-    publicKey,
-    message,
-    salt,
-    data
-  } = signedMessage;
+    const {
+        publicKey,
+        message,
+        salt,
+        data
+    } = signedMessage;
 
-  console.log('Public key used to sign:', publicKey);
-  console.log('Original message:', message);
-  console.log('Salt added to message:', salt);
-  console.log('Signed data:', data);
+    console.log('Public key used to sign:', publicKey);
+    console.log('Original message:', message);
+    console.log('Salt added to message:', salt);
+    console.log('Signed data:', data);
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case UNKNOWN_ERROR:
-      console.log(description);
-      break;
-  }
+    switch(type) {
+        case UNKNOWN_ERROR:
+            console.log(description);
+            break;
+    }
 });
 
 /* Example Response */
 {
-  publicKey: '"03ba9524bd7479414be713c3a4f6f3ef35f90bb4b08f0f552211bf734c24415230"',
-  data: '"be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd"',
-  salt: '',
-  message: 'Hello world'
+    publicKey: '"03ba9524bd7479414be713c3a4f6f3ef35f90bb4b08f0f552211bf734c24415230"',
+    data: '"be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd"',
+    salt: '',
+    message: 'Hello world'
 }
         </code></pre>
             </div>
@@ -1987,40 +1999,40 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                 <pre><code class="language-js">/* Example */
 neoline.getNetworks()
 .then(result => {
-  const {
-    chainId,
-    networks,
-    defaultNetwork
-  } = result;
+    const {
+        chainId,
+        networks,
+        defaultNetwork
+    } = result;
 
-  console.log('chainId: ' + chainId);
-  // eg. 4
+    console.log('chainId: ' + chainId);
+    // eg. 4
 
-  console.log('Networks: ' + networks);
-  // eg. ["MainNet", "TestNet", "N3TestNet"]
+    console.log('Networks: ' + networks);
+    // eg. ["MainNet", "TestNet", "N3TestNet"]
 
-  console.log('Default network: ' + defaultNetwork);
-  // eg. "N3TestNet"
+    console.log('Default network: ' + defaultNetwork);
+    // eg. "N3TestNet"
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-    case 'CHAIN_NOT_MATCH':
-      console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'CONNECTION_DENIED':
+            console.log('The user rejected the request to connect with your dApp');
+            break;
+        case 'CHAIN_NOT_MATCH':
+            console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
+            break;
+    }
 });
 
 /* Example Response */
 {
-  chainId: 4,
-  networks: ["MainNet", "TestNet", "N3TestNet"],
-  defaultNetwork: "N3TestNet"
+    chainId: 4,
+    networks: ["MainNet", "TestNet", "N3TestNet"],
+    defaultNetwork: "N3TestNet"
 }
         </code></pre>
             </div>
@@ -2078,32 +2090,32 @@ neoline.getNetworks()
                 <pre><code class="language-js">/* Example */
 neoline.getAccount()
 .then(account => {
-  const {
-    address,
-    label
-  } = account;
+    const {
+        address,
+        label
+    } = account;
 
-  console.log('Provider address: ' + address);
-  console.log('Provider account label (Optional): ' + label);
+    console.log('Provider address: ' + address);
+    console.log('Provider account label (Optional): ' + label);
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-    case 'CHAIN_NOT_MATCH':
-      console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'CONNECTION_DENIED':
+            console.log('The user rejected the request to connect with your dApp');
+            break;
+        case 'CHAIN_NOT_MATCH':
+            console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
+            break;
+    }
 });
 
 /* Example Response */
 {
-  address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
-  label: 'NEOLine'
+    address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
+    label: 'NEOLine'
 }
 </code></pre>
             </div>
@@ -2161,29 +2173,29 @@ neoline.getAccount()
                 <pre><code class="language-js">/* Example */
 neoline.getPublicKey()
 .then(publicKeyData => {
-  const {
-    address,
-    publicKey
-  } = publicKeyData;
+    const {
+        address,
+        publicKey
+    } = publicKeyData;
 
-  console.log('Account address: ' + address);
-  console.log('Account public key: ' + publicKey);
+    console.log('Account address: ' + address);
+    console.log('Account public key: ' + publicKey);
 })
 .catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-  }
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'CONNECTION_DENIED':
+            console.log('The user rejected the request to connect with your dApp');
+            break;
+    }
 });
 
 /* Example Response */
 {
-  address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
-  publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
+    address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
+    publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
 }
     </code></pre>
             </div>
@@ -2466,7 +2478,8 @@ window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
     <article class="veil">
         <aside class="catalogue veil-catalogue">
             <section class="aside-item">
-                <h4 class="getting-start">Getting Started<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <h4 class="getting-start">Getting Started<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up">
+                </h4>
                 <div class="item-content getting-start">
                     <a href="#startExample">Example</a>
                 </div>
@@ -2481,7 +2494,7 @@ window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
                     <a href="#getBalance">getBalance</a>
                     <a href="#getStorage">getStorage</a>
                     <a href="#invokeRead">invokeRead</a>
-                    <a href="#invokeReadMulti">invokeReadMulti</a> 
+                    <a href="#invokeReadMulti">invokeReadMulti</a>
                     <a href="#verifyMessage">verifyMessage</a>
                     <a href="#getBlock">getBlock</a>
                     <a href="#getTransaction">getTransaction</a>
