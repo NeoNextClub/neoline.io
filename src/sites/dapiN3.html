@@ -311,7 +311,7 @@ neolinen3.getBalance({
         "address": "Nf5ZiYimhx9AMgVC9ety1DEhPRseDYik5z",
         "assetIds":["0xc938a3ab4a0edce9400788697ef635843b14a13a"]
     }
-  ],
+  ]
 })
 .then((results) => {
   Object.keys(results).forEach(address => {
@@ -731,7 +731,7 @@ neolinen3.invokeReadMulti({
                 {
                     type: "Address",
                     value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
-                },
+                }
             ]
         },
         {
@@ -741,7 +741,7 @@ neolinen3.invokeReadMulti({
                 {
                     type: "Address",
                     value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
-                },
+                }
             ]
         }
     ],
@@ -1508,7 +1508,7 @@ neolinen3.invoke({
         scopes: 1
         }
     ],
-    attributes: []
+    txHashAttributes: []
 })
 .then(result => {
   console.log('Invoke transaction success!');
@@ -1760,6 +1760,7 @@ neolinen3.invokeMultiple({
             scopes: 1
         }
     ],
+    txHashAttributes: []
 })
 .then(({txid, nodeURL}: InvokeOutput) => {
   console.log('Invoke transaction success!');
