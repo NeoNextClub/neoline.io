@@ -28,11 +28,25 @@ header {
         font-weight: 300;
         font-size: 14px;
         flex: 1;
+        color: #000;
     }
 
     img.menu {
         height: 25px;
         cursor: pointer;
+    }
+    
+    .right-menu {
+        a {
+            padding: 0 5px;
+            color: rgba(0,0,0,0.54);
+            text-decoration: none;
+            font-weight: normal;
+            &.menu-active {
+                color: rgba(0,0,0,1);
+                font-weight: 500;
+            }
+        }
     }
 }
 

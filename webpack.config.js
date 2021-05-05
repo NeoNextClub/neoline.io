@@ -98,6 +98,21 @@ module.exports = {
             filename: 'dapi/index.html'
         }),
         new HtmlWebpackPlugin({
+            template: 'src/sites/dapiN3.html',
+            inject: 'body',
+            xhtml: true,
+            metadata: {
+                isDevServer: false
+            },
+            minify: {
+                caseSensitive: true,
+                collapseWhitespace: true,
+                keepClosingSlash: true
+            },
+            chunks: ['dapi'],
+            filename: 'dapi/N3.html'
+        }),
+        new HtmlWebpackPlugin({
             template: 'src/sites/zh/help.html',
             inject: 'body',
             xhtml: true,
