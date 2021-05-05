@@ -29,9 +29,6 @@
             <h4 class="read-methods">Read Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
             <div class="item-content read-methods">
                 <a href="#getProvider">getProvider</a>
-                <a href="#getNetworks">getNetworks</a>
-                <a href="#getAccount">getAccount</a>
-                <a href="#getPublicKey">getPublicKey</a>
                 <a href="#getBalance">getBalance</a>
                 <a href="#getStorage">getStorage</a>
                 <a href="#invokeRead">invokeRead</a>
@@ -52,7 +49,21 @@
             </div>
         </section>
         <section class="aside-item">
-            <h4 class="events">Events<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <h4 class="read-methods">Common Example<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <div class="item-content read-methods">
+                <a href="#commonExample">Example</a>
+            </div>
+        </section>
+        <section class="aside-item">
+            <h4 class="read-methods">Common Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+            <div class="item-content read-methods">
+                <a href="#getNetworks">getNetworks</a>
+                <a href="#getAccount">getAccount</a>
+                <a href="#getPublicKey">getPublicKey</a>
+            </div>
+        </section>
+        <section class="aside-item">
+            <h4 class="events">Common Events<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
             <div class="item-content events">
                 <a href="#READY">READY</a>
                 <a href="#ACCOUNT_CHANGED">ACCOUNT_CHANGED</a>
@@ -78,24 +89,20 @@
         </section>
     </aside>
     <article class="content">
-            <section id="startExample" class="content-item">
-                    <div class="overview">
-                        <h4>Example</h4>
-                    </div>
-                    <div class="examples">
-                        <pre><code class="language-js">
+        <section id="startExample" class="content-item">
+            <div class="overview">
+                <h4>Example</h4>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">
 window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
-  const neolinen3 = new NEOLineN3.Init();
-  neolinen3.getAccount()
-  .then(account => console.log(account))
-});
-or
-window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
-    const neoline = new NEOLine.Init();
+    const neolinen3 = new NEOLineN3.Init();
+    neolinen3.getBalance()
+    .then(result => console.log(result))
 });
         </code></pre>
-                    </div>
-                </section>
+            </div>
+        </section>
         <section id="getProvider" class="content-item">
             <div class="overview">
                 <h4>getProvider</h4>
@@ -130,7 +137,8 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                         </tr>
                         <tr>
                             <td><code>extra: object</code></td>
-                            <td>This object can contain any attributes specific to the dapi provider, such as an app theme</td>
+                            <td>This object can contain any attributes specific to the dapi provider, such as an app
+                                theme</td>
                         </tr>
                     </tbody>
                 </table>
@@ -193,271 +201,11 @@ neolinen3.getProvider()
   website: 'https://www.neoline.io/',
   version: '1.0.0',
   compatibility: [
-    'NEP-14',
-    'NEP-23',
-    'NEP-29'
   ],
   extra: {
-    theme: 'Dark Mode',
-    currency: 'USD'
   }
 }
 </code></pre>
-            </div>
-        </section>
-        <section id="getNetworks" class="content-item">
-            <div class="overview">
-                <h4>getNetworks</h4>
-                <p>Returns the networks the wallet provider has available to connect to, along with the default network
-                    the wallet is currently set to.</p>
-                <h5>Input Arguments</h5>
-                <p>None</p>
-                <h5>Success Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>networks: string[]</code></td>
-                            <td>Array of network names the wallet provider has available for the dapp developer to connect to</td>
-                        </tr>
-                        <tr>
-                            <td><code>defaultNetwork: string</code></td>
-                            <td>Network the wallet is currently set to</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Error Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>type: string</code></td>
-                            <td>The type of error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>description: string</code></td>
-                            <td>A description of the error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>data: string</code></td>
-                            <td>Any raw data associated with the error</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="examples">
-                <pre><code class="language-js">/* Example */
-neoline.getNetworks()
-.then(result => {
-  const {
-    chainId,
-    networks,
-    defaultNetwork
-  } = result;
-
-  console.log('chainId: ' + chainId);
-  // eg. 4
-
-  console.log('Networks: ' + networks);
-  // eg. ["MainNet", "TestNet", "N3TestNet"]
-
-  console.log('Default network: ' + defaultNetwork);
-  // eg. "N3TestNet"
-})
-.catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-    case 'CHAIN_NOT_MATCH':
-      console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
-      break;
-  }
-});
-
-/* Example Response */
-{
-  chainId: 4,
-  networks: ["MainNet", "TestNet", "N3TestNet"],
-  defaultNetwork: "N3TestNet"
-}
-</code></pre>
-            </div>
-        </section>
-        <section id="getAccount" class="content-item">
-            <div class="overview">
-                <h4>getAccount</h4>
-                <p>Return the Account that is currently connected to the dApp.</p>
-                <h5>Input Arguments</h5>
-                <p>None</p>
-                <h5>Success Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>address: string</code></td>
-                            <td>Address of the connected account</td>
-                        </tr>
-                        <tr>
-                            <td><code>label?: string</code></td>
-                            <td>A label the users has set to identify their wallet</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Error Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>type: string</code></td>
-                            <td>The type of error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>description: string</code></td>
-                            <td>A description of the error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>data: string</code></td>
-                            <td>Any raw data associated with the error</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="examples">
-                <pre><code class="language-js">/* Example */
-neoline.getAccount()
-.then(account => {
-  const {
-    address,
-    label
-  } = account;
-
-  console.log('Provider address: ' + address);
-  console.log('Provider account label (Optional): ' + label);
-})
-.catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-    case 'CHAIN_NOT_MATCH':
-      console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
-      break;
-  }
-});
-
-/* Example Response */
-{
-  address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
-  label: 'NEOLine'
-}
-</code></pre>
-            </div>
-        </section>
-        <section id="getPublicKey" class="content-item">
-            <div class="overview">
-                <h4>getPublicKey</h4>
-                <p>Return the public key of the Account that is currently connected to the dApp.</p>
-                <h5>Input Arguments</h5>
-                <p>None</p>
-                <h5>Success Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>address: string</code></td>
-                            <td>Address of the connected account</td>
-                        </tr>
-                        <tr>
-                            <td><code>publicKey: string</code></td>
-                            <td>Public key of the connected account</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Error Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>type: string</code></td>
-                            <td>The type of error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>description: string</code></td>
-                            <td>A description of the error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>data: string</code></td>
-                            <td>Any raw data associated with the error</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="examples">
-                <pre><code class="language-js">/* Example */
-neoline.getPublicKey()
-.then(publicKeyData => {
-  const {
-    address,
-    publicKey
-  } = publicKeyData;
-
-  console.log('Account address: ' + address);
-  console.log('Account public key: ' + publicKey);
-})
-.catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
-    case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-  }
-});
-
-/* Example Response */
-{
-  address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
-  publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
-}
-    </code></pre>
             </div>
         </section>
         <section id="getBalance" class="content-item">
@@ -2017,7 +1765,7 @@ neolinen3.invokeMultiple({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neoline.signMessage({
+neolinen3.signMessage({
   message: 'Hello world'
 })
 .then(signedMessage => {
@@ -2048,7 +1796,300 @@ neoline.signMessage({
   salt: '',
   message: 'Hello world'
 }
-      </code></pre>
+        </code></pre>
+            </div>
+        </section>
+        <section id="commonExample" class="content-item">
+            <div class="overview">
+                <h4>Example</h4>
+                <p>Please refer to examples for public methods.</p>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">
+window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
+    const neoline = new NEOLine.Init();
+});
+        </code></pre>
+            </div>
+        </section>
+        <section id="getNetworks" class="content-item">
+            <div class="overview">
+                <h4>getNetworks</h4>
+                <p>Returns the networks the wallet provider has available to connect to, along with the default network
+                    the wallet is currently set to.</p>
+                <h5>Input Arguments</h5>
+                <p>None</p>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>networks: string[]</code></td>
+                            <td>Array of network names the wallet provider has available for the dapp developer to
+                                connect to</td>
+                        </tr>
+                        <tr>
+                            <td><code>chainId:<a href="#getNetWorks-networkResult"><img class="tip"
+                                src="/assets/images/dapi/i.svg" alt="i"></a> number</code></td>
+                            <td>ChainId the wallet is currently set to</td>
+                        </tr>
+                        <tr>
+                            <td><code>defaultNetwork: string</code></td>
+                            <td>N3 version deprecated</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>CahinId Type</h5>
+                <table id="getNetWorks-networkResult">
+                    <thead>
+                        <tr>
+                            <th>chainId</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code> 3</code></td>
+                            <td>ChainId 3 is the N3 MainNet</td>
+                        </tr>
+                        <tr>
+                            <td><code> 4</code></td>
+                            <td>ChainId 4 is the N3 TestNet (Currently only TestNet)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getNetworks()
+.then(result => {
+  const {
+    chainId,
+    networks,
+    defaultNetwork
+  } = result;
+
+  console.log('chainId: ' + chainId);
+  // eg. 4
+
+  console.log('Networks: ' + networks);
+  // eg. ["MainNet", "TestNet", "N3TestNet"]
+
+  console.log('Default network: ' + defaultNetwork);
+  // eg. "N3TestNet"
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+    case 'CHAIN_NOT_MATCH':
+      console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  chainId: 4,
+  networks: ["MainNet", "TestNet", "N3TestNet"],
+  defaultNetwork: "N3TestNet"
+}
+        </code></pre>
+            </div>
+        </section>
+        <section id="getAccount" class="content-item">
+            <div class="overview">
+                <h4>getAccount</h4>
+                <p>Return the Account that is currently connected to the dApp.</p>
+                <h5>Input Arguments</h5>
+                <p>None</p>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>Address of the connected account</td>
+                        </tr>
+                        <tr>
+                            <td><code>label?: string</code></td>
+                            <td>A label the users has set to identify their wallet</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getAccount()
+.then(account => {
+  const {
+    address,
+    label
+  } = account;
+
+  console.log('Provider address: ' + address);
+  console.log('Provider account label (Optional): ' + label);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+    case 'CHAIN_NOT_MATCH':
+      console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
+  label: 'NEOLine'
+}
+</code></pre>
+            </div>
+        </section>
+        <section id="getPublicKey" class="content-item">
+            <div class="overview">
+                <h4>getPublicKey</h4>
+                <p>Return the public key of the Account that is currently connected to the dApp.</p>
+                <h5>Input Arguments</h5>
+                <p>None</p>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>Address of the connected account</td>
+                        </tr>
+                        <tr>
+                            <td><code>publicKey: string</code></td>
+                            <td>Public key of the connected account</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>description: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>data: string</code></td>
+                            <td>Any raw data associated with the error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neoline.getPublicKey()
+.then(publicKeyData => {
+  const {
+    address,
+    publicKey
+  } = publicKeyData;
+
+  console.log('Account address: ' + address);
+  console.log('Account public key: ' + publicKey);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case 'NO_PROVIDER':
+      console.log('No provider available.');
+      break;
+    case 'CONNECTION_DENIED':
+      console.log('The user rejected the request to connect with your dApp');
+      break;
+  }
+});
+
+/* Example Response */
+{
+  address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
+  publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
+}
+    </code></pre>
             </div>
         </section>
         <section id="READY" class="content-item">
@@ -2121,7 +2162,8 @@ neoline.signMessage({
                 <h4>CONNECTED</h4>
                 <p>On a CONNECTED event, the user has approved the connection of the dapp with one of their accounts.
                     This will fire the first time any of one of the following methods are called from the dapp:
-                    <code>getAccount</code>, <code>invoke</code>, <code>send</code>.</p>
+                    <code>getAccount</code>, <code>invoke</code>, <code>send</code>.
+                </p>
                 <table>
                     <thead>
                         <tr>
@@ -2167,8 +2209,13 @@ neoline.signMessage({
                             <td>A list of all networks which this wallet provider allows access to</td>
                         </tr>
                         <tr>
+                            <td><code>chainId:<a href="#getNetWorks-networkResult"><img class="tip"
+                                src="/assets/images/dapi/i.svg" alt="i"></a> number</code></td>
+                            <td>ChainId the wallet is currently set to</td>
+                        </tr>
+                        <tr>
                             <td><code>defaultNetwork: string</code></td>
-                            <td>Network the wallet is currently set to</td>
+                            <td>N3 version deprecated</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2287,7 +2334,8 @@ window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
                         </tr>
                         <tr>
                             <td><code>CONNECTION_DENIED</code></td>
-                            <td>Thrown when API provider refuses to execute a transaction (e.g. trying to execute a transaction on an unavialable network)</td>
+                            <td>Thrown when API provider refuses to execute a transaction (e.g. trying to execute a
+                                transaction on an unavialable network)</td>
                         </tr>
                         <tr>
                             <td><code>RPC_ERROR</code></td>
@@ -2307,7 +2355,8 @@ window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
                         </tr>
                         <tr>
                             <td><code>CHAIN_NOT_MATCH</code></td>
-                            <td>The currently opened chain does not match the type of the call chain, please switch the chain</td>
+                            <td>The currently opened chain does not match the type of the call chain, please switch the
+                                chain</td>
                         </tr>
                         <tr>
                             <td><code>FAIL</code></td>
@@ -2353,7 +2402,22 @@ window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
                 </div>
             </section>
             <section class="aside-item">
-                <h4 class="events">Events<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <h4 class="read-methods">Common Example<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
+                <div class="item-content read-methods">
+                    <a href="#commonExample">Example</a>
+                </div>
+            </section>
+            <section class="aside-item">
+                <h4 class="common-methods">Common Methods<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up">
+                </h4>
+                <div class="item-content read-methods">
+                    <a href="#getNetworks">getNetworks</a>
+                    <a href="#getAccount">getAccount</a>
+                    <a href="#getPublicKey">getPublicKey</a>
+                </div>
+            </section>
+            <section class="aside-item">
+                <h4 class="events">Common Events<img src="/assets/images/dapi/arrow_up.svg" alt="arrow up"></h4>
                 <div class="item-content events">
                     <a href="#READY">READY</a>
                     <a href="#ACCOUNT_CHANGED">ACCOUNT_CHANGED</a>
