@@ -1041,28 +1041,31 @@ neolineN3.getTransaction({
 
 /* Example Response */
 {
-    txID: "0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474,
-    vin: [
+    "hash": "0xc156988547570d1c852d9a56324b2e09d89077ff0aee2070d0b470332ae1e083",
+    "size": 244,
+    "sys_fee": "0.0997775",
+    "net_fee": "0.0124379",
+    "block_index": 103879,
+    "block_time": 1618238381713,
+    "version": 0,
+    "transfers": [
         {
-            address: "AZy5LGtAvwpyJMYq39xX4MsDzAL2B6pEZn",
-            assetID: "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
-            n: 0,
-            txid: "0xd7769e675a47bea100e1e9ea5e1723ec181d90b601884ffc4837844d4ca95103",
-            value: "4"
-        }
-    ],
-    vout: [
+            "hash": "0xc156988547570d1c852d9a56324b2e09d89077ff0aee2070d0b470332ae1e083",
+            "src": "tx",
+            "contract": "0xd2a4cff31913016155e38e474a2c06d08be276cf",
+            "from": "",
+            "to": "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            "amount": "0.00004914"
+        },
         {
-            address: "AZy5LGtAvwpyJMYq39xX4MsDzAL2B6pEZn",
-            assetID: "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
-            n: 0,
-            value: "4"
+            "hash": "0xc156988547570d1c852d9a56324b2e09d89077ff0aee2070d0b470332ae1e083",
+            "src": "tx",
+            "contract": "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5",
+            "from": "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            "to": "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            "amount": "1"
         }
-    ],
-    sys_fee: "0",
-    net_fee: "0",
-    blockIndex: 3840003,
-    blocktime: 1559707311
+    ]
 }
   </code></pre>
             </div>
@@ -1205,10 +1208,10 @@ neolineN3.getApplicationLog({
                             <td><code>amount: string</code></td>
                             <td>The parsed amount of the asset to be sent</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td><code>remark?: string</code></td>
                             <td>Description of the transaction to be made</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td><code>fee?: string</code></td>
                             <td>The parsed amount of network fee (in GAS) to include with transaction</td>
@@ -1292,7 +1295,6 @@ neolineN3.send({
     toAddress: 'Nb8Jqn7v2qVdbvJJSktTCzTfw15dTJ6Q1K',
     asset: 'NEO',
     amount: '1',
-    remark: 'NEOLine',
     fee: '0.0001',
     broadcastOverride: false
 })
@@ -1370,11 +1372,11 @@ neolineN3.send({
                             <td>In the case that the dApp would like to be responsible for broadcasting the signed
                                 transaction rather than the wallet provider</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td><code>txHashAttributes?: <a href="#Invoke-TxHashAttribute"><img class="tip"
                                             src="/assets/images/dapi/i.svg" alt="i"></a>TxHashAttribute[]</code></td>
                             <td>Adds transaction attributes for the "Hash<x>" usage block</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <p id="Invoke-Argument">Argument</p>
@@ -1510,8 +1512,7 @@ neolineN3.invoke({
             account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
             scopes: 1
         }
-    ],
-    txHashAttributes: []
+    ]
 })
 .then(result => {
     console.log('Invoke transaction success!');
@@ -1573,11 +1574,11 @@ neolineN3.invoke({
                             <td>If this flag is set to True, the wallet provider will return the signed transaction
                                 rather than broadcasting to a node.</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td><code>txHashAttributes?: <a href="#invokeMulti-TxHashAttribute"><img class="tip"
                                             src="/assets/images/dapi/i.svg" alt="i"></a>TxHashAttribute[]</code></td>
                             <td>Optional list of tx attribute hash values to be added</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <p id="invokeMulti-InvokeArguments">InvokeArguments</p>
@@ -1769,8 +1770,7 @@ neolineN3.invokeMultiple({
             account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
             scopes: 1
         }
-    ],
-    txHashAttributes: []
+    ]
 })
 .then(({txid, nodeURL}: InvokeOutput) => {
     console.log('Invoke transaction success!');
