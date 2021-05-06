@@ -96,8 +96,8 @@
             <div class="examples">
                 <pre><code class="language-js">
 window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
-    const neolinen3 = new NEOLineN3.Init();
-    neolinen3.getBalance()
+    const neolineN3 = new neolineN3.Init();
+    neolineN3.getBalance()
     .then(result => console.log(result))
 });
         </code></pre>
@@ -168,7 +168,7 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.getProvider()
+neolineN3.getProvider()
 .then(provider => {
     const {
         name,
@@ -292,7 +292,7 @@ neolinen3.getProvider()
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.getBalance({
+neolineN3.getBalance({
     params: [
         {
             "address": "NdJqYNVK99srFABQDLPdrpz2By1RX1sLvr",
@@ -424,7 +424,7 @@ neolinen3.getBalance({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.getStorage({
+neolineN3.getStorage({
     scriptHash: '0x006b26dd0d2aa076b11082847a094772450f05af',
     key: 'token0',
 })
@@ -557,7 +557,7 @@ neolinen3.getStorage({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.invokeRead({
+neolineN3.invokeRead({
     scriptHash: '0xd2a4cff31913016155e38e474a2c06d08be276cf',
     operation: 'transfer',
     args: [
@@ -720,7 +720,7 @@ neolinen3.invokeRead({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.invokeReadMulti({
+neolineN3.invokeReadMulti({
     invokeReadArgs: [
         {
             scriptHash: "0xd2a4cff31913016155e38e474a2c06d08be276cf",
@@ -934,7 +934,7 @@ neoline.verifyMessage({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.getBlock({
+neolineN3.getBlock({
     blockHeight: 19690,
 })
 .then(result => {
@@ -1022,7 +1022,7 @@ neolinen3.getBlock({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.getTransaction({
+neolineN3.getTransaction({
     txid: '0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474'
 })
 .then(result => {
@@ -1114,7 +1114,7 @@ neolinen3.getTransaction({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.getApplicationLog({
+neolineN3.getApplicationLog({
     txid: '0xa8184d1fb08199ca8926f992b6253962c4a8047f7d4cfc5ac420e346fa761b03',
 })
 .then(result => {
@@ -1287,7 +1287,7 @@ neolinen3.getApplicationLog({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.send({
+neolineN3.send({
     fromAddress: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
     toAddress: 'Nb8Jqn7v2qVdbvJJSktTCzTfw15dTJ6Q1K',
     asset: 'NEO',
@@ -1488,7 +1488,7 @@ neolinen3.send({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.invoke({
+neolineN3.invoke({
     scriptHash: '0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5',
     operation: 'transfer',
     args: [
@@ -1727,7 +1727,7 @@ neolinen3.invoke({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.invokeMultiple({
+neolineN3.invokeMultiple({
     invokeArgs: [
         {
             scriptHash: "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5",
@@ -1873,7 +1873,7 @@ neolinen3.invokeMultiple({
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolinen3.signMessage({
+neolineN3.signMessage({
     message: 'Hello world'
 })
 .then(signedMessage => {
