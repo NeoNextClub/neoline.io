@@ -244,8 +244,8 @@ neolineN3.getProvider()
                             <td>Address to check balance(s)</td>
                         </tr>
                         <tr>
-                            <td><code>assetIDs: string[]</code></td>
-                            <td>assetIds is a list of asset id</td>
+                            <td><code>contracts: string[]</code></td>
+                            <td>contracts is a list of asset id</td>
                         </tr>
                     </tbody>
                 </table>
@@ -276,12 +276,12 @@ neolineN3.getProvider()
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>assetID: string</code></td>
-                            <td>ID of the given asset</td>
+                            <td><code>contract: string</code></td>
+                            <td>ID of the given contract</td>
                         </tr>
                         <tr>
                             <td><code>symbol: string</code></td>
-                            <td>Symbol of the given asset</td>
+                            <td>Symbol of the given contract</td>
                         </tr>
                         <tr>
                             <td><code>amount: string</code></td>
@@ -296,18 +296,18 @@ neolineN3.getBalance({
     params: [
         {
             "address": "NdJqYNVK99srFABQDLPdrpz2By1RX1sLvr",
-            "assetIds":[
+            "contracts":[
                 "0xd2a4cff31913016155e38e474a2c06d08be276cf", 
                 "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"
             ]
         },
         {
             "address": "NSnoQP2nHddGTWou4CntbgZQDNL7Y6Kn2M",
-            "assetIds":[]
+            "contracts":[]
         },
         {
             "address": "Nf5ZiYimhx9AMgVC9ety1DEhPRseDYik5z",
-            "assetIds":["0xc938a3ab4a0edce9400788697ef635843b14a13a"]
+            "contracts":["0xc938a3ab4a0edce9400788697ef635843b14a13a"]
         }
     ]
 })
@@ -315,10 +315,10 @@ neolineN3.getBalance({
     Object.keys(results).forEach(address => {
         const balances = results[address];
         balances.forEach(balance => {
-            const { assetID, symbol, amount } = balance
+            const { contract, symbol, amount } = balance
 
             console.log('Address: ' + address);
-            console.log('Asset ID: ' + assetID);
+            console.log('contract: ' + contract);
             console.log('Asset symbol: ' + symbol);
             console.log('Amount: ' + amount);
         });
@@ -341,19 +341,19 @@ neolineN3.getBalance({
         {
             "symbol": "NEO",
             "amount": "5000000",
-            "assetID": "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5"
+            "contract": "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5"
         },
         {
             "symbol": "GAS",
             "amount": "10063.4476161",
-            "assetID": "0xd2a4cff31913016155e38e474a2c06d08be276cf"
+            "contract": "0xd2a4cff31913016155e38e474a2c06d08be276cf"
         }
     ],
     "Nf5ZiYimhx9AMgVC9ety1DEhPRseDYik5z": [
         {
             "symbol": "SHUAI2",
             "amount": "125",
-            "assetID": "0xc938a3ab4a0edce9400788697ef635843b14a13a"
+            "contract": "0xc938a3ab4a0edce9400788697ef635843b14a13a"
         }
     ]
 }
