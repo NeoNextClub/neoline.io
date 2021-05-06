@@ -792,101 +792,6 @@ neolineN3.invokeReadMulti({
     </code></pre>
             </div>
         </section>
-        <!-- <section id="verifyMessage" class="content-item">
-            <div class="overview">
-                <h4>verifyMessage</h4>
-                <p>Returns whether the provided signature data matches the provided message and was signed by the
-                    account of the provided public key.</p>
-                <h5>Input Arguments</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>message: string</code></td>
-                            <td>Salt prefix + original message</td>
-                        </tr>
-                        <tr>
-                            <td><code>data: string</code></td>
-                            <td>Signed message</td>
-                        </tr>
-                        <tr>
-                            <td><code>publicKey: string</code></td>
-                            <td>Public key of account that signed message</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Success Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>result: boolean</code></td>
-                            <td>Whether the provided signature matches the provided message and public key</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Error Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>type: string</code></td>
-                            <td>The type of error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>description: string</code></td>
-                            <td>A description of the error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>data: string</code></td>
-                            <td>Any raw data associated with the error</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="examples">
-                <pre><code class="language-js">/* Example */
-neoline.verifyMessage({
-    message: 'Hello world',
-    data: 'be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd',
-    publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
-})
-.then(result => {
-    console.log('Signature data matches provided message and public key: ' + JSON.stringify(result));
-})
-.catch(({type: string, description: string, data: any}) => {
-    switch(type) {
-        case 'NO_PROVIDER':
-            console.log('No provider available.');
-            break;
-        case 'CONNECTION_DENIED':
-            console.log('The user rejected the request to connect with your dApp');
-            break;
-    }
-});
-
-/* Example Response */
-{
-  result: true
-}
-    </code></pre>
-            </div>
-        </section> -->
         <section id="getBlock" class="content-item">
             <div class="overview">
                 <h4>getBlock</h4>
@@ -1208,10 +1113,6 @@ neolineN3.getApplicationLog({
                             <td><code>amount: string</code></td>
                             <td>The parsed amount of the asset to be sent</td>
                         </tr>
-                        <!-- <tr>
-                            <td><code>remark?: string</code></td>
-                            <td>Description of the transaction to be made</td>
-                        </tr> -->
                         <tr>
                             <td><code>fee?: string</code></td>
                             <td>The parsed amount of network fee (in GAS) to include with transaction</td>
@@ -1372,11 +1273,6 @@ neolineN3.send({
                             <td>In the case that the dApp would like to be responsible for broadcasting the signed
                                 transaction rather than the wallet provider</td>
                         </tr>
-                        <!-- <tr>
-                            <td><code>txHashAttributes?: <a href="#Invoke-TxHashAttribute"><img class="tip"
-                                            src="/assets/images/dapi/i.svg" alt="i"></a>TxHashAttribute[]</code></td>
-                            <td>Adds transaction attributes for the "Hash<x>" usage block</td>
-                        </tr> -->
                     </tbody>
                 </table>
                 <p id="Invoke-Argument">Argument</p>
@@ -1453,8 +1349,10 @@ neolineN3.invoke({
             type: "Address",
             value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
         },
-        1,
-        null,
+        {
+            type: "Integer",
+            value: "1",
+        }
     ],
     fee: '0.0001',
     broadcastOverride: false,
@@ -1525,11 +1423,6 @@ neolineN3.invoke({
                             <td>If this flag is set to True, the wallet provider will return the signed transaction
                                 rather than broadcasting to a node.</td>
                         </tr>
-                        <!-- <tr>
-                            <td><code>txHashAttributes?: <a href="#invokeMulti-TxHashAttribute"><img class="tip"
-                                            src="/assets/images/dapi/i.svg" alt="i"></a>TxHashAttribute[]</code></td>
-                            <td>Optional list of tx attribute hash values to be added</td>
-                        </tr> -->
                     </tbody>
                 </table>
                 <p id="invokeMulti-InvokeArguments">InvokeArguments</p>
@@ -1658,8 +1551,10 @@ neolineN3.invokeMultiple({
                     type: "Address",
                     value: "NPsCvedTnzGcwSYuoxjh7Sec5Zem2vgVmX",
                 },
-                1,
-                null
+                {
+                    type: "Integer",
+                    value: "1",
+                }
             ]
         },
         {
@@ -1674,8 +1569,10 @@ neolineN3.invokeMultiple({
                     type: "Address",
                     value: "NPsCvedTnzGcwSYuoxjh7Sec5Zem2vgVmX",
                 },
-                1,
-                null
+                {
+                    type: "Integer",
+                    value: "1",
+                }
             ]
         }
     ],
@@ -1715,114 +1612,6 @@ neolineN3.invokeMultiple({
       </code></pre>
             </div>
         </section>
-        <!-- <section id="signMessage" class="content-item">
-            <div class="overview">
-                <h4>signMessage</h4>
-                <p>Signs a provided messaged with an account selected by user. A randomized salt prefix is added to the
-                    input string before it is signed, and it is encased in a non-executable transaction before signed.
-                    This ensures allow compatibility with Ledger devices.</p>
-                <h5>Input Arguments</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>message: string</code></td>
-                            <td>The message to sign</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Success Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>publicKey: string</code></td>
-                            <td>Public key of account that signed message</td>
-                        </tr>
-                        <tr>
-                            <td><code>data: string</code></td>
-                            <td>Original message signed</td>
-                        </tr>
-                        <tr>
-                            <td><code>salt: string</code></td>
-                            <td>Salt added to original message as prefix, before signing</td>
-                        </tr>
-                        <tr>
-                            <td><code>message: string</code></td>
-                            <td>Signed message</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Error Response</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>type: string</code></td>
-                            <td>The type of error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>description: string</code></td>
-                            <td>A description of the error which has occured</td>
-                        </tr>
-                        <tr>
-                            <td><code>data: string</code></td>
-                            <td>Any raw data associated with the error</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="examples">
-                <pre><code class="language-js">/* Example */
-neolineN3.signMessage({
-    message: 'Hello world'
-})
-.then(signedMessage => {
-    const {
-        publicKey,
-        message,
-        salt,
-        data
-    } = signedMessage;
-
-    console.log('Public key used to sign:', publicKey);
-    console.log('Original message:', message);
-    console.log('Salt added to message:', salt);
-    console.log('Signed data:', data);
-})
-.catch(({type: string, description: string, data: any}) => {
-    switch(type) {
-        case UNKNOWN_ERROR:
-            console.log(description);
-            break;
-    }
-});
-
-/* Example Response */
-{
-    publicKey: '"03ba9524bd7479414be713c3a4f6f3ef35f90bb4b08f0f552211bf734c24415230"',
-    data: '"be506bf7e6851960bfe45968bf5dbbf79a9dc5dc63ee5b88629acfb288c435649c2766e977d4bc76253d8590bb3ca3d9b70efd71d6f7eebdf060dfa58c6601fd"',
-    salt: '',
-    message: 'Hello world'
-}
-        </code></pre>
-            </div>
-        </section> -->
         <section id="commonExample" class="content-item">
             <div class="overview">
                 <h4>Example</h4>
