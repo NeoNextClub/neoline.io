@@ -1639,9 +1639,9 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                                 connect to</td>
                         </tr>
                         <tr>
-                            <td><code>chainId:<a href="#getNetWorks-networkResult"><img class="tip"
+                            <td><code>chain:<a href="#getNetWorks-networkResult"><img class="tip"
                                 src="/assets/images/dapi/i.svg" alt="i"></a> number</code></td>
-                            <td>ChainId the wallet is currently set to</td>
+                            <td>chainID the wallet is currently set to</td>
                         </tr>
                         <tr>
                             <td><code>defaultNetwork: string</code></td>
@@ -1649,22 +1649,22 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                         </tr>
                     </tbody>
                 </table>
-                <h5>ChainId Type</h5>
+                <h5>chainID Type</h5>
                 <table id="getNetWorks-networkResult">
                     <thead>
                         <tr>
-                            <th>chainId</th>
+                            <th>chainID</th>
                             <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><code> 3</code></td>
-                            <td>ChainId 3 is the N3 MainNet</td>
+                            <td>chainID 3 is the N3MainNet</td>
                         </tr>
                         <tr>
                             <td><code> 4</code></td>
-                            <td>ChainId 4 is the N3 TestNet (Currently only TestNet)</td>
+                            <td>chainID 4 is the N3TestNet (Currently only N3TestNet)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1697,12 +1697,12 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
 neoline.getNetworks()
 .then(result => {
     const {
-        chainId,
+        chainID,
         networks,
         defaultNetwork
     } = result;
 
-    console.log('chainId: ' + chainId);
+    console.log('chainID: ' + chainID);
     // eg. 4
 
     console.log('Networks: ' + networks);
@@ -1727,7 +1727,7 @@ neoline.getNetworks()
 
 /* Example Response */
 {
-    chainId: 4,
+    chainID: 4,
     networks: ["MainNet", "TestNet", "N3TestNet"],
     defaultNetwork: "N3TestNet"
 }
@@ -2014,9 +2014,9 @@ neoline.getPublicKey()
                             <td>A list of all networks which this wallet provider allows access to</td>
                         </tr>
                         <tr>
-                            <td><code>chainId:<a href="#getNetWorks-networkResult"><img class="tip"
+                            <td><code>chainID:<a href="#getNetWorks-networkResult"><img class="tip"
                                 src="/assets/images/dapi/i.svg" alt="i"></a> number</code></td>
-                            <td>ChainId the wallet is currently set to</td>
+                            <td>chainID the wallet is currently set to</td>
                         </tr>
                         <tr>
                             <td><code>defaultNetwork: string</code></td>
@@ -2038,6 +2038,10 @@ neoline.getPublicKey()
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><code>chainID: number</code></td>
+                            <td></td>
+                        </tr>
                         <tr>
                             <td><code>blockHeight: number</code></td>
                             <td>Height of the new block</td>
