@@ -1406,10 +1406,6 @@ neolineN3.invoke({
                                 the wallet SHOULD allow the user to attach an optional fee</td>
                         </tr>
                         <tr>
-                            <td><code>network: string</code></td>
-                            <td>Network alias to submit this request to.</td>
-                        </tr>
-                        <tr>
                             <td><code>invokeArgs?: <a href="#invokeMulti-InvokeArguments"><img class="tip"
                                             src="/assets/images/dapi/i.svg" alt="i"></a>InvokeArguments[]</code></td>
                             <td>Array of contract invoke inputs</td>
@@ -2040,7 +2036,7 @@ neoline.getPublicKey()
                     <tbody>
                         <tr>
                             <td><code>chainID: number</code></td>
-                            <td></td>
+                            <td>ChainID is the type of wallet selection network</td>
                         </tr>
                         <tr>
                             <td><code>blockHeight: number</code></td>
@@ -2075,6 +2071,10 @@ neoline.getPublicKey()
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><code>chainID: number</code></td>
+                            <td>ChainID is the type of wallet selection network</td>
+                        </tr>
                         <tr>
                             <td><code>txid: string</code></td>
                             <td>Transaction id which was confirmed on chain</td>
