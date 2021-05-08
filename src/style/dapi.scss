@@ -206,6 +206,9 @@ table {
         vertical-align: top;
         font-weight: 400;
         word-wrap: break-word;
+        &.center {
+            text-align: center;
+        }
     }
 }
 

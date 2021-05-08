@@ -1635,17 +1635,17 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                                 connect to</td>
                         </tr>
                         <tr>
-                            <td><code>chain:<a href="#getNetworks-networkResult"><img class="tip"
+                            <td><code>chainId:<a href="#getNetworks-networkResult"><img class="tip"
                                 src="/assets/images/dapi/i.svg" alt="i"></a> number</code></td>
-                            <td>chainId the wallet is currently set to</td>
+                            <td>ChainId the wallet is currently set to</td>
                         </tr>
                         <tr>
                             <td><code>defaultNetwork: string</code></td>
-                            <td>N3 version deprecated</td>
+                            <td>Network the wallet is currently set to</td>
                         </tr>
                     </tbody>
                 </table>
-                <h5>chainId Type</h5>
+                <h5>Chain IDs Type</h5>
                 <table id="getNetworks-networkResult">
                     <thead>
                         <tr>
@@ -1655,12 +1655,20 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code> 3</code></td>
-                            <td>chainId 3 is the N3MainNet</td>
+                            <td class="center"><code>1</code></td>
+                            <td>ChainId 1 is the Neo2 MainNet</td>
                         </tr>
                         <tr>
-                            <td><code> 4</code></td>
-                            <td>chainId 4 is the N3TestNet (Currently only N3TestNet)</td>
+                            <td class="center"><code>2</code></td>
+                            <td>ChainId 2 is the Neo2 TestNet</td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code>3</code></td>
+                            <td>ChainId 3 is the N3 MainNet</td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code>4</code></td>
+                            <td>ChainId 4 is the N3 TestNet (Currently only N3 TestNet)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2016,7 +2024,7 @@ neoline.getPublicKey()
                         </tr>
                         <tr>
                             <td><code>defaultNetwork: string</code></td>
-                            <td>N3 version deprecated</td>
+                            <td>Network the wallet is currently set to</td>
                         </tr>
                     </tbody>
                 </table>
