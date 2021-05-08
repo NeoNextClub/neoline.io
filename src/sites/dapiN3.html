@@ -1635,9 +1635,9 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                                 connect to</td>
                         </tr>
                         <tr>
-                            <td><code>chain:<a href="#getNetWorks-networkResult"><img class="tip"
+                            <td><code>chain:<a href="#getNetworks-networkResult"><img class="tip"
                                 src="/assets/images/dapi/i.svg" alt="i"></a> number</code></td>
-                            <td>chainID the wallet is currently set to</td>
+                            <td>chainId the wallet is currently set to</td>
                         </tr>
                         <tr>
                             <td><code>defaultNetwork: string</code></td>
@@ -1645,22 +1645,22 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
                         </tr>
                     </tbody>
                 </table>
-                <h5>chainID Type</h5>
-                <table id="getNetWorks-networkResult">
+                <h5>chainId Type</h5>
+                <table id="getNetworks-networkResult">
                     <thead>
                         <tr>
-                            <th>chainID</th>
+                            <th>chainId</th>
                             <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><code> 3</code></td>
-                            <td>chainID 3 is the N3MainNet</td>
+                            <td>chainId 3 is the N3MainNet</td>
                         </tr>
                         <tr>
                             <td><code> 4</code></td>
-                            <td>chainID 4 is the N3TestNet (Currently only N3TestNet)</td>
+                            <td>chainId 4 is the N3TestNet (Currently only N3TestNet)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1693,12 +1693,12 @@ window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
 neoline.getNetworks()
 .then(result => {
     const {
-        chainID,
+        chainId,
         networks,
         defaultNetwork
     } = result;
 
-    console.log('chainID: ' + chainID);
+    console.log('chainId: ' + chainId);
     // eg. 4
 
     console.log('Networks: ' + networks);
@@ -1723,7 +1723,7 @@ neoline.getNetworks()
 
 /* Example Response */
 {
-    chainID: 4,
+    chainId: 4,
     networks: ["MainNet", "TestNet", "N3TestNet"],
     defaultNetwork: "N3TestNet"
 }
@@ -2010,9 +2010,9 @@ neoline.getPublicKey()
                             <td>A list of all networks which this wallet provider allows access to</td>
                         </tr>
                         <tr>
-                            <td><code>chainID:<a href="#getNetWorks-networkResult"><img class="tip"
+                            <td><code>chainId:<a href="#getNetworks-networkResult"><img class="tip"
                                 src="/assets/images/dapi/i.svg" alt="i"></a> number</code></td>
-                            <td>chainID the wallet is currently set to</td>
+                            <td>chainId the wallet is currently set to</td>
                         </tr>
                         <tr>
                             <td><code>defaultNetwork: string</code></td>
@@ -2035,8 +2035,8 @@ neoline.getPublicKey()
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>chainID: number</code></td>
-                            <td>ChainID is the type of wallet selection network</td>
+                            <td><code>chainId: number</code></td>
+                            <td>ChainId is the type of wallet selection network</td>
                         </tr>
                         <tr>
                             <td><code>blockHeight: number</code></td>
@@ -2072,8 +2072,8 @@ neoline.getPublicKey()
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>chainID: number</code></td>
-                            <td>ChainID is the type of wallet selection network</td>
+                            <td><code>chainId: number</code></td>
+                            <td>ChainId is the type of wallet selection network</td>
                         </tr>
                         <tr>
                             <td><code>txid: string</code></td>
