@@ -318,27 +318,18 @@ neolineN3.getBalance()
 });
 
 // output
-{
-    "NSnoQP2nHddGTWou4CntbgZQDNL7Y6Kn2M": [
-        {
-            "symbol": "NEO",
-            "amount": "5000000",
-            "contract": "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5"
-        },
-        {
-            "symbol": "GAS",
-            "amount": "10063.4476161",
-            "contract": "0xd2a4cff31913016155e38e474a2c06d08be276cf"
-        }
-    ],
-    "Nf5ZiYimhx9AMgVC9ety1DEhPRseDYik5z": [
-        {
-            "symbol": "SHUAI2",
-            "amount": "125",
-            "contract": "0xc938a3ab4a0edce9400788697ef635843b14a13a"
-        }
-    ]
-}
+[
+    {
+        "symbol": "NEO",
+        "amount": "5000000",
+        "contract": "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5"
+    },
+    {
+        "symbol": "GAS",
+        "amount": "10063.4476161",
+        "contract": "0xd2a4cff31913016155e38e474a2c06d08be276cf"
+    }
+]
     </code></pre>
             </div>
         </section>
@@ -562,7 +553,7 @@ neolineN3.invokeRead({
     ],
     signers: [
         {
-            account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
+            account: "2cab903ff032ac693f8514581665be534beac39f",
             scopes: 1
         }
     ],
@@ -710,7 +701,7 @@ neolineN3.invokeReadMulti({
             args: [
                 {
                     type: "Address",
-                    value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+                    value: "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
                 }
             ]
         },
@@ -720,14 +711,14 @@ neolineN3.invokeReadMulti({
             args: [
                 {
                     type: "Address",
-                    value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+                    value: "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
                 }
             ]
         }
     ],
     signers: [
         {
-            account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
+            account: "2cab903ff032ac693f8514581665be534beac39f",
             scopes: 1
         }
     ]
@@ -822,7 +813,7 @@ neolineN3.invokeReadMulti({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolineN3.getBlock({
-    blockHeight: 19690,
+    blockHeight: 190,
 })
 .then(result => {
     console.log('Block information: ' + JSON.stringify(result));
@@ -846,7 +837,7 @@ neolineN3.getBlock({
     "previousblockhash": "0xb2462644577fdc9302abfe3517d07cbb9e7d51354872257901ba3ab1c2f4ead6",
     "merkleroot": "0x0000000000000000000000000000000000000000000000000000000000000000",
     "time": 1616899442433,
-    "index": 19690,
+    "index": 190,
     "primary": 6,
     "nextconsensus": "NNjNWMEgRw9bnvg7RkjSB9FZfzXUXfqovh",
     "witnesses": [
@@ -910,7 +901,7 @@ neolineN3.getBlock({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolineN3.getTransaction({
-    txid: '0xfb3ecd6070e819187acaa307fb303fda7ae18577d98f948c4a4e13bce7ece474'
+    txid: '0xe5a5fdacad0ba4e8d34d2fa0638357adb0f05e7fc902ec150739616320870f50'
 })
 .then(result => {
     console.log('Transaction details: ' + JSON.stringify(result));
@@ -941,15 +932,15 @@ neolineN3.getTransaction({
             "src": "tx",
             "contract": "0xd2a4cff31913016155e38e474a2c06d08be276cf",
             "from": "",
-            "to": "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            "to": "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
             "amount": "0.00004914"
         },
         {
             "hash": "0xc156988547570d1c852d9a56324b2e09d89077ff0aee2070d0b470332ae1e083",
             "src": "tx",
             "contract": "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5",
-            "from": "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
-            "to": "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            "from": "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
+            "to": "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
             "amount": "1"
         }
     ]
@@ -1005,7 +996,7 @@ neolineN3.getTransaction({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolineN3.getApplicationLog({
-    txid: '0xa8184d1fb08199ca8926f992b6253962c4a8047f7d4cfc5ac420e346fa761b03',
+    txid: '0xe5a5fdacad0ba4e8d34d2fa0638357adb0f05e7fc902ec150739616320870f50',
 })
 .then(result => {
     console.log('Application log of transaction execution: ' + JSON.stringify(result));
@@ -1174,9 +1165,9 @@ neolineN3.getApplicationLog({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolineN3.send({
-    fromAddress: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
-    toAddress: 'Nb8Jqn7v2qVdbvJJSktTCzTfw15dTJ6Q1K',
-    asset: 'NEO',
+    fromAddress: 'NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq',
+    toAddress: 'NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq',
+    asset: 'GAS',
     amount: '1',
     fee: '0.0001',
     broadcastOverride: false
@@ -1321,11 +1312,11 @@ neolineN3.invoke({
     args: [
         {
             type: "Address",
-            value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            value: "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
         },
         {
             type: "Address",
-            value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+            value: "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
         },
         {
             type: "Integer",
@@ -1336,7 +1327,7 @@ neolineN3.invoke({
     broadcastOverride: false,
     signers: [
         {
-            account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
+            account: "2cab903ff032ac693f8514581665be534beac39f",
             scopes: 1
         }
     ]
@@ -1515,11 +1506,11 @@ neolineN3.invokeMultiple({
             args: [
                 {
                     type: "Address",
-                    value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+                    value: "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
                 },
                 {
                     type: "Address",
-                    value: "NPsCvedTnzGcwSYuoxjh7Sec5Zem2vgVmX",
+                    value: "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
                 },
                 {
                     type: "Integer",
@@ -1533,7 +1524,7 @@ neolineN3.invokeMultiple({
             args: [
                 {
                     type: "Address",
-                    value: "NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S",
+                    value: "NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq",
                 },
                 {
                     type: "Address",
@@ -1550,7 +1541,7 @@ neolineN3.invokeMultiple({
     broadcastOverride: true,
     signers: [
         {
-            account: "0308b3051efebc98b05f75ce9d8ffed65d5db147",
+            account: "2cab903ff032ac693f8514581665be534beac39f",
             scopes: 1
         }
     ]
@@ -1798,7 +1789,7 @@ neoline.getAccount()
 
 /* Example Response */
 {
-    address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
+    address: 'NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq',
     label: 'NEOLine'
 }
 </code></pre>
@@ -1878,7 +1869,7 @@ neoline.getPublicKey()
 
 /* Example Response */
 {
-    address: 'NST3dthhKK3BFjZQKRXb4X4PycYgA6EC5S',
+    address: 'NaUjKgf5vMuFt7Ffgfffcpc41uH3adx1jq',
     publicKey: '6PYKGV4numxfoswwCedXzhb1oNCC8W4tEdfFPdtWtFa8WidpzYfeJkd2To'
 }
     </code></pre>
