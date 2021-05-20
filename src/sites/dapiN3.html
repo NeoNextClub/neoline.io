@@ -292,25 +292,7 @@ neolineN3.getProvider()
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolineN3.getBalance({
-    params: [
-        {
-            "address": "NdJqYNVK99srFABQDLPdrpz2By1RX1sLvr",
-            "contracts":[
-                "0xd2a4cff31913016155e38e474a2c06d08be276cf", 
-                "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"
-            ]
-        },
-        {
-            "address": "NSnoQP2nHddGTWou4CntbgZQDNL7Y6Kn2M",
-            "contracts":[]
-        },
-        {
-            "address": "Nf5ZiYimhx9AMgVC9ety1DEhPRseDYik5z",
-            "contracts":["0xc938a3ab4a0edce9400788697ef635843b14a13a"]
-        }
-    ]
-})
+neolineN3.getBalance()
 .then((results) => {
     Object.keys(results).forEach(address => {
         const balances = results[address];
