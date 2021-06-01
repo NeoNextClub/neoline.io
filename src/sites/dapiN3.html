@@ -452,6 +452,11 @@ neolineN3.getStorage({
                                             alt="i"></a>Argument[]</code></td>
                             <td>Any input arguments for the operation</td>
                         </tr>
+                        <tr>
+                            <td><code>signers: <a href="#invoke-signer"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>Signers[]</code></td>
+                            <td>Sender and the effective scope of signature</td>
+                        </tr>
                     </tbody>
                 </table>
                 <h5>Success Response</h5>
@@ -501,6 +506,65 @@ neolineN3.getStorage({
                         <tr>
                             <td><code>value: string</code></td>
                             <td>String representation of the argument which you are using</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invoke-signer">Signer</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>account: string</code></td>
+                            <td>Script hash of the account</td>
+                        </tr>
+                        <tr>
+                            <td><code>scopes: number</code><a href="#invoke-scopes"><img class="tip" src="/assets/images/dapi/i.svg"
+                                alt="i"></a></td>
+                            <td>Effective range of the signature</td>
+                        </tr>
+                        <tr>
+                            <td><code>allowedContracts: Array</code></td>
+                            <td>Signs array of the allowed contract scripts</td>
+                        </tr>
+                        <tr>
+                            <td><code>AllowedGroups: Array</code></td>
+                            <td>Signs public keys of the allowed contract groups</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="invoke-scopes">Scopes</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>0</code></td>
+                            <td>The signature is used for transactions only, and is disabled in contracts</td>
+                        </tr>
+                        <tr>
+                            <td><code>1</code></td>
+                            <td>The signature is only effective to the contract script called by Entry</td>
+                        </tr>
+                        <tr>
+                            <td><code>16</code></td>
+                            <td>The signature is only effective to the specified contract script</td>
+                        </tr>
+                        <tr>
+                            <td><code>32</code></td>
+                            <td>The signature is effective to contracts in the group.</td>
+                        </tr>
+                        <tr>
+                            <td><code>128</code></td>
+                            <td>The signature is globally effective. It is the default value of Neo Legacy and is backward compatible.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1242,6 +1306,11 @@ neolineN3.send({
                             <td>In the case that the dApp would like to be responsible for broadcasting the signed
                                 transaction rather than the wallet provider</td>
                         </tr>
+                        <tr>
+                            <td><code>signers: <a href="#invoke-signer"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>Signers[]</code></td>
+                            <td>Sender and the effective scope of signature</td>
+                        </tr>
                     </tbody>
                 </table>
                 <p id="Invoke-Argument">Argument</p>
@@ -1387,6 +1456,11 @@ neolineN3.invoke({
                             <td><code>broadcastOverride?: boolean</code></td>
                             <td>If this flag is set to True, the wallet provider will return the signed transaction
                                 rather than broadcasting to a node.</td>
+                        </tr>
+                        <tr>
+                            <td><code>signers: <a href="#invoke-signer"><img class="tip" src="/assets/images/dapi/i.svg"
+                                            alt="i"></a>Signers[]</code></td>
+                            <td>Sender and the effective scope of signature</td>
                         </tr>
                     </tbody>
                 </table>
