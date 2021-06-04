@@ -37,6 +37,7 @@
                 <a href="#getBlock">getBlock</a>
                 <a href="#getTransaction">getTransaction</a>
                 <a href="#getApplicationLog">getApplicationLog</a>
+                <a href="#pickAddress">pickAddress</a>
             </div>
         </section>
         <section class="aside-item">
@@ -95,7 +96,7 @@
             </div>
             <div class="examples">
                 <pre><code class="language-js">
-window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
+window.addEventListener('NEOLine.N3.EVENT.READY', () => {
     const neolineN3 = new neolineN3.Init();
     neolineN3.getBalance()
     .then(result => console.log(result))
@@ -501,7 +502,7 @@ neolineN3.getStorage({
                         <tr>
                             <td><code>type: 'String' | 'Boolean' | 'Hash160' | 'Hash256' | 'Integer' | 'ByteArray' |
                                     'Array' | 'Address'</code></td>
-                            <td>The type of the argument with you are using</td>
+                            <td>The type of the argument with you are using. The type is an array, please see the example for the value.</td>
                         </tr>
                         <tr>
                             <td><code>value: string</code></td>
@@ -528,11 +529,11 @@ neolineN3.getStorage({
                             <td>Effective range of the signature</td>
                         </tr>
                         <tr>
-                            <td><code>allowedContracts: Array</code></td>
+                            <td><code>allowedContracts?: Array</code></td>
                             <td>Signs array of the allowed contract scripts</td>
                         </tr>
                         <tr>
-                            <td><code>allowedGroups: Array</code></td>
+                            <td><code>allowedGroups?: Array</code></td>
                             <td>Signs public keys of the allowed contract groups</td>
                         </tr>
                     </tbody>
@@ -650,6 +651,21 @@ neolineN3.invokeRead({
         }
     ]
 }
+/* Example, Type is array */
+args: [
+        {
+            type: "Array",
+            value: [
+              {
+                type: "String",
+                value: "0x576f726c64"
+              }, {
+                type: "String",
+                value: "0x576f726c64"
+              }
+            ]
+        }
+    ]
     </code></pre>
             </div>
         </section>
@@ -1116,6 +1132,59 @@ neolineN3.getApplicationLog({
             ]
         }
     ]
+}
+      </code></pre>
+            </div>
+        </section>
+        <section id="pickAddress" class="content-item">
+            <div class="overview">
+                <h4>pickAddress</h4>
+                <p>Get the application log for a given transaction.</p>
+                <h5>Input Arguments</h5>
+                <p>None</p>
+                <h5>Error Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>label: string</code></td>
+                            <td>The type of error which has occured</td>
+                        </tr>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>A description of the error which has occured</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neolineN3.pickAddress()
+.then(result => {
+    const { label, address } = result;
+    console.log('label:' + label);
+    console.log('address' + address);
+})
+.catch(({type: string, description: string, data: any}) => {
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'CANCELED':
+            console.log('The user cancels, or refuses the dapps request');
+            break;
+    }
+});
+
+/* Example Response */
+{
+    label: 'N3-Name',
+    address: 'NfuwpaQ1A2xaeVbxWe8FRtaRgaMa8yF3YM'
 }
       </code></pre>
             </div>
