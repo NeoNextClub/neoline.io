@@ -38,6 +38,8 @@
                 <a href="#getTransaction">getTransaction</a>
                 <a href="#getApplicationLog">getApplicationLog</a>
                 <a href="#pickAddress">pickAddress</a>
+                <a href="#addressToScriptHash">AddressToScriptHash</a>
+                <a href="#scriptHashToAddress">ScriptHashToAddress</a>
             </div>
         </section>
         <section class="aside-item">
@@ -1185,6 +1187,126 @@ neolineN3.pickAddress()
 {
     label: 'N3-Name',
     address: 'NfuwpaQ1A2xaeVbxWe8FRtaRgaMa8yF3YM'
+}
+      </code></pre>
+            </div>
+        </section>
+        <section id="addressToScriptHash" class="content-item">
+            <div class="overview">
+                <h4>AddressToScriptHash</h4>
+                <p>Converts an address to scripthash.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>The is N3 address.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>scriptHash: string</code></td>
+                            <td>SctiptHash is the script hash of the N3 account.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neolineN3.AddressToScriptHash({ address: 'NQUN2zkzwpypEi6kvGYexy8cQKN2ycyJjF' })
+.then(result => {
+    const { scriptHash } = result;
+    console.log('scriptHash' + scriptHash);
+})
+.catch(({type: string, description: string, data: any}) => {
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'MALFORMED_INPUT':
+            console.log('Please check your input');
+            break;
+    }
+});
+
+/* Example Response */
+{
+    scriptHash: '0xf0a33d62f32528c25e68951286f238ad24e30032'
+}
+      </code></pre>
+            </div>
+        </section>
+        <section id="scriptHashToAddress" class="content-item">
+            <div class="overview">
+                <h4>ScriptHashToAddress</h4>
+                <p>Converts a scripthash to address.</p>
+                <h5>Input Arguments</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>scriptHash: string</code></td>
+                            <td>SctiptHash is the script hash of the N3 account.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Success Response</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>address: string</code></td>
+                            <td>The is N3 address.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+neolineN3.ScriptHashToAddress({ scriptHash: '0xf0a33d62f32528c25e68951286f238ad24e30032' })
+.then(result => {
+    const { address } = result;
+    console.log('address' + address);
+})
+.catch(({type: string, description: string, data: any}) => {
+    switch(type) {
+        case 'NO_PROVIDER':
+            console.log('No provider available.');
+            break;
+        case 'MALFORMED_INPUT':
+            console.log('Please check your input');
+            break;
+    }
+});
+
+/* Example Response */
+{
+    address: 'NQUN2zkzwpypEi6kvGYexy8cQKN2ycyJjF'
 }
       </code></pre>
             </div>
