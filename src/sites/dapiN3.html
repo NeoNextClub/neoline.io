@@ -401,7 +401,7 @@ neolineN3.getBalance()
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolineN3.getStorage({
-    scriptHash: '0x006b26dd0d2aa076b11082847a094772450f05af',
+    scriptHash: '006b26dd0d2aa076b11082847a094772450f05af',
     key: 'token0',
 })
 .then(result => {
@@ -598,7 +598,7 @@ neolineN3.getStorage({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolineN3.invokeRead({
-    scriptHash: '0xd2a4cff31913016155e38e474a2c06d08be276cf',
+    scriptHash: 'd2a4cff31913016155e38e474a2c06d08be276cf',
     operation: 'transfer',
     args: [
         {
@@ -778,7 +778,7 @@ args: [
 neolineN3.invokeReadMulti({
     invokeReadArgs: [
         {
-            scriptHash: "0xd2a4cff31913016155e38e474a2c06d08be276cf",
+            scriptHash: "d2a4cff31913016155e38e474a2c06d08be276cf",
             operation: "balanceOf",
             args: [
                 {
@@ -788,7 +788,7 @@ neolineN3.invokeReadMulti({
             ]
         },
         {
-            scriptHash: "0xd2a4cff31913016155e38e474a2c06d08be276cf",
+            scriptHash: "d2a4cff31913016155e38e474a2c06d08be276cf",
             operation: "balanceOf",
             args: [
                 {
@@ -1341,7 +1341,7 @@ neolineN3.AddressToScriptHash({ address: 'NQUN2zkzwpypEi6kvGYexy8cQKN2ycyJjF' })
 
 /* Example Response */
 {
-    scriptHash: '0xf0a33d62f32528c25e68951286f238ad24e30032'
+    scriptHash: 'f0a33d62f32528c25e68951286f238ad24e30032'
 }
       </code></pre>
             </div>
@@ -1383,7 +1383,7 @@ neolineN3.AddressToScriptHash({ address: 'NQUN2zkzwpypEi6kvGYexy8cQKN2ycyJjF' })
             </div>
             <div class="examples">
                 <pre><code class="language-js">/* Example */
-neolineN3.ScriptHashToAddress({ scriptHash: '0xf0a33d62f32528c25e68951286f238ad24e30032' })
+neolineN3.ScriptHashToAddress({ scriptHash: 'f0a33d62f32528c25e68951286f238ad24e30032' })
 .then(result => {
     const { address } = result;
     console.log('address' + address);
@@ -1662,7 +1662,7 @@ neolineN3.send({
             <div class="examples">
                 <pre><code class="language-js">/* Example */
 neolineN3.invoke({
-    scriptHash: '0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5',
+    scriptHash: 'ef4073a0f2b305a38ec4050e4d3d28bc40ea63f5',
     operation: 'transfer',
     args: [
         {
@@ -1861,7 +1861,7 @@ neolineN3.invoke({
 neolineN3.invokeMultiple({
     invokeArgs: [
         {
-            scriptHash: "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5",
+            scriptHash: "ef4073a0f2b305a38ec4050e4d3d28bc40ea63f5",
             operation: "transfer",
             args: [
                 {
@@ -1875,11 +1875,15 @@ neolineN3.invokeMultiple({
                 {
                     type: "Integer",
                     value: "1",
+                },
+                {
+                    type: "Any",
+                    value: null
                 }
             ]
         },
         {
-            scriptHash: "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5",
+            scriptHash: "ef4073a0f2b305a38ec4050e4d3d28bc40ea63f5",
             operation: "transfer",
             args: [
                 {
@@ -1893,6 +1897,10 @@ neolineN3.invokeMultiple({
                 {
                     type: "Integer",
                     value: "1",
+                },
+                {
+                    type: "Any",
+                    value: null
                 }
             ]
         }
