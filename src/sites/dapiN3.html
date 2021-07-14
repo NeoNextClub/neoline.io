@@ -98,11 +98,40 @@
             </div>
             <div class="examples">
                 <pre><code class="language-js">
-window.addEventListener('NEOLine.N3.EVENT.READY', () => {
-    const neolineN3 = new NEOLineN3.Init();
-    neolineN3.getBalance()
-    .then(result => console.log(result))
-});
+let neoline;
+let neolineN3;
+function initDapi() {
+    const initCommonDapi = new Promise((resolve, reject) => {
+        window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
+            neoline = new NEOLine.Init();
+            if (neoline) {
+                resolve(neoline);
+            } else {
+                console.log('common dAPI method failed to load.');
+                reject('common dAPI method failed to load.');
+            }
+        });
+    });
+    const initN3Dapi = new Promise((resolve, reject) => {
+        window.addEventListener('NEOLine.N3.EVENT.READY', () => {
+            neolineN3 = new NEOLineN3.Init();
+            if (neolineN3) {
+                resolve(neolineN3);
+            } else {
+                console.log('N3 dAPI method failed to load.');
+                reject('N3 dAPI method failed to load.');
+            }
+        });
+    });
+    initCommonDapi.then(() => {
+        console.log('The common dAPI method is loaded.');
+        return initN3Dapi;
+    }).then(() => {
+        console.log('The N3 dAPI method is loaded.');
+    }).catch((err) => {
+        console.log(err);
+    })
+}
         </code></pre>
             </div>
         </section>
@@ -2391,6 +2420,13 @@ neoline.getPublicKey()
                     </tbody>
                 </table>
             </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
+    console.log('dAPI common method loading is complete.');
+});
+                </code></pre>
+            </div>
         </section>
         <section id="ACCOUNT_CHANGED" class="content-item">
             <div class="overview">
@@ -2416,6 +2452,13 @@ neoline.getPublicKey()
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+window.addEventListener('NEOLine.NEO.EVENT.ACCOUNT_CHANGED', (result) => {
+    console.log('account changed:', result.detail);
+});
+                </code></pre>
             </div>
         </section>
         <section id="CONNECTED" class="content-item">
@@ -2444,12 +2487,26 @@ neoline.getPublicKey()
                     </tbody>
                 </table>
             </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+window.addEventListener('NEOLine.NEO.EVENT.CONNECTED', (result) => {
+    console.log('connected account:', result.detail);
+});
+                </code></pre>
+            </div>
         </section>
         <section id="DISCONNECTED" class="content-item">
             <div class="overview">
                 <h4>DISCONNECTED</h4>
                 <p>On a DISCONNECTED event, the account connected to the dapp via the dapi provider has been
                     disconnected (logged out).</p>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+window.addEventListener('NEOLine.NEO.EVENT.DISCONNECTED', () => {
+    console.log('dAPI public method loading is complete.');
+});
+                </code></pre>
             </div>
         </section>
         <section id="NETWORK_CHANGED" class="content-item">
@@ -2480,6 +2537,13 @@ neoline.getPublicKey()
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+window.addEventListener('NEOLine.NEO.EVENT.NETWORK_CHANGED', (result) => {
+    console.log('network:', result.detail);
+});
+                </code></pre>
             </div>
         </section>
         <section id="BLOCK_HEIGHT_CHANGED" class="content-item">
@@ -2517,6 +2581,13 @@ neoline.getPublicKey()
                     </tbody>
                 </table>
             </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+window.addEventListener('NEOLine.NEO.EVENT.BLOCK_HEIGHT_CHANGED', (result) => {
+    console.log('block height:', result.detail);
+});
+                </code></pre>
+            </div>
         </section>
         <section id="TRANSACTION_CONFIRMED" class="content-item">
             <div class="overview">
@@ -2549,6 +2620,13 @@ neoline.getPublicKey()
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+window.addEventListener('NEOLine.NEO.EVENT.TRANSACTION_CONFIRMED', (result) => {
+    console.log('Transaction confirmation detail:', result.detail);
+});
+                </code></pre>
             </div>
         </section>
         <section id="addEventListener" class="content-item">
@@ -2663,6 +2741,8 @@ window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
                     <a href="#getBlock">getBlock</a>
                     <a href="#getTransaction">getTransaction</a>
                     <a href="#getApplicationLog">getApplicationLog</a>
+                    <a href="#addressToScriptHash">AddressToScriptHash</a>
+                    <a href="#scriptHashToAddress">ScriptHashToAddress</a>
                 </div>
             </section>
             <section class="aside-item">
