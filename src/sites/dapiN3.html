@@ -95,14 +95,46 @@
         <section id="startExample" class="content-item">
             <div class="overview">
                 <h4>Example</h4>
+                <p>If you need to call the N3 dAPI monitoring method, you need to initialize NEOLine after initializing
+                    NEOLineN3, please refer to the example on the right.</p>
             </div>
             <div class="examples">
                 <pre><code class="language-js">
-window.addEventListener('NEOLine.N3.EVENT.READY', () => {
-    const neolineN3 = new neolineN3.Init();
-    neolineN3.getBalance()
-    .then(result => console.log(result))
-});
+let neoline;
+let neolineN3;
+
+function initDapi() {
+    const initCommonDapi = new Promise((resolve, reject) => {
+        window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
+            neoline = new NEOLine.Init();
+            if (neoline) {
+                resolve(neoline);
+            } else {
+                reject('common dAPI method failed to load.');
+            }
+        });
+    });
+    const initN3Dapi = new Promise((resolve, reject) => {
+        window.addEventListener('NEOLine.N3.EVENT.READY', () => {
+            neolineN3 = new NEOLineN3.Init();
+            if (neolineN3) {
+                resolve(neolineN3);
+            } else {
+                reject('N3 dAPI method failed to load.');
+            }
+        });
+    });
+    initCommonDapi.then(() => {
+        console.log('The common dAPI method is loaded.');
+        return initN3Dapi;
+    }).then(() => {
+        console.log('The N3 dAPI method is loaded.');
+    }).catch((err) => {
+        console.log(err);
+    })
+};
+
+initDapi();
         </code></pre>
             </div>
         </section>
@@ -187,13 +219,18 @@ neolineN3.getProvider()
     console.log('Provider dAPI compatibility: ' + JSON.stringify(compatibility));
     console.log('Extra provider specific atributes: ' + JSON.stringify(compatibility));
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'CONNECTION_DENIED':
             console.log('The user rejected the request to connect with your dApp.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -309,13 +346,18 @@ neolineN3.getBalance()
         });
     });
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'CONNECTION_DENIED':
             console.log('The user rejected the request to connect with your dApp');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -408,7 +450,8 @@ neolineN3.getStorage({
     const value = result;
     console.log('Storage value: ' + value.result);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
@@ -418,6 +461,10 @@ neolineN3.getStorage({
             break;
         case 'RPC_ERROR':
             console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -504,7 +551,8 @@ neolineN3.getStorage({
                         <tr>
                             <td><code>type: 'String' | 'Boolean' | 'Hash160' | 'Hash256' | 'Integer' | 'ByteArray' |
                                     'Array' | 'Address'</code></td>
-                            <td>The type of the argument with you are using. The type is an array, please see the example for the value.</td>
+                            <td>The type of the argument with you are using. The type is an array, please see the
+                                example for the value.</td>
                         </tr>
                         <tr>
                             <td><code>value: string</code></td>
@@ -523,11 +571,11 @@ neolineN3.getStorage({
                     <tbody>
                         <tr>
                             <td><code>account: string</code></td>
-                            <td>Script hash of the account</td>
+                            <td>scriptHash of the address</td>
                         </tr>
                         <tr>
-                            <td><code>scopes: number</code><a href="#invoke-scopes"><img class="tip" src="/assets/images/dapi/i.svg"
-                                alt="i"></a></td>
+                            <td><code>scopes: number</code><a href="#invoke-scopes"><img class="tip"
+                                        src="/assets/images/dapi/i.svg" alt="i"></a></td>
                             <td>Effective range of the signature</td>
                         </tr>
                         <tr>
@@ -567,7 +615,8 @@ neolineN3.getStorage({
                         </tr>
                         <tr>
                             <td><code>128</code></td>
-                            <td>The signature is globally effective. It is the default value of Neo Legacy and is backward compatible.</td>
+                            <td>The signature is globally effective. It is the default value of Neo Legacy and is
+                                backward compatible.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -628,7 +677,8 @@ neolineN3.invokeRead({
 .then(result => {
   console.log('Read invocation result: ' + JSON.stringify(result));
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+  const {type, description, data} = error;
   switch(type) {
     case 'NO_PROVIDER':
         console.log('No provider available.');
@@ -636,8 +686,12 @@ neolineN3.invokeRead({
     case 'CONNECTION_REFUSED':
         console.log('Connection dApp not connected. Please call the "connect" function.');
         break;
-   case 'RPC_ERROR':
+    case 'RPC_ERROR':
         console.log('There was an error when broadcasting this transaction to the network.');
+        break;
+    default:
+        // Not an expected error object.  Just write the error to the console.
+        console.error(error);
         break;
   }
 });
@@ -807,7 +861,8 @@ neolineN3.invokeReadMulti({
 }).then(result => {
     console.log('Read invocation result: ' + JSON.stringify(result));
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+  const {type, description, data} = error;
   switch(type) {
     case 'NO_PROVIDER':
         console.log('No provider available.');
@@ -815,8 +870,12 @@ neolineN3.invokeReadMulti({
     case 'CONNECTION_REFUSED':
         console.log('Connection dApp not connected. Please call the "connect" function.');
         break;
-   case 'RPC_ERROR':
+    case 'RPC_ERROR':
         console.log('There was an error when broadcasting this transaction to the network.');
+        break;
+    default:
+        // Not an expected error object.  Just write the error to the console.
+        console.error(error);
         break;
   }
 });
@@ -924,14 +983,19 @@ neolineN3.verifyMessage({
 .then(result => {
   console.log('Signature data matches provided message and public key: ' + JSON.stringify(result));
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+  const {type, description, data} = error;
   switch(type) {
     case 'NO_PROVIDER':
-      console.log('No provider available.');
-      break;
+        console.log('No provider available.');
+        break;
     case 'CONNECTION_DENIED':
-      console.log('The user rejected the request to connect with your dApp');
-      break;
+        console.log('The user rejected the request to connect with your dApp');
+        break;
+    default:
+        // Not an expected error object.  Just write the error to the console.
+        console.error(error);
+        break;
   }
 });
 
@@ -995,13 +1059,18 @@ neolineN3.getBlock({
 .then(result => {
     console.log('Block information: ' + JSON.stringify(result));
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'RPC_ERROR':
             console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1083,13 +1152,18 @@ neolineN3.getTransaction({
 .then(result => {
     console.log('Transaction details: ' + JSON.stringify(result));
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'RPC_ERROR':
             console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1178,13 +1252,18 @@ neolineN3.getApplicationLog({
 .then(result => {
     console.log('Application log of transaction execution: ' + JSON.stringify(result));
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'RPC_ERROR':
             console.log('There was an error when broadcasting this transaction to the network.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1267,13 +1346,18 @@ neolineN3.pickAddress()
     console.log('label:' + label);
     console.log('address' + address);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'CANCELED':
             console.log('The user cancels, or refuses the dapps request');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1328,13 +1412,18 @@ neolineN3.AddressToScriptHash({ address: 'NQUN2zkzwpypEi6kvGYexy8cQKN2ycyJjF' })
     const { scriptHash } = result;
     console.log('scriptHash' + scriptHash);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'MALFORMED_INPUT':
             console.log('Please check your input');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1388,13 +1477,18 @@ neolineN3.ScriptHashToAddress({ scriptHash: 'f0a33d62f32528c25e68951286f238ad24e
     const { address } = result;
     console.log('address' + address);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'MALFORMED_INPUT':
             console.log('Please check your input');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1527,7 +1621,8 @@ neolineN3.send({
     console.log('Transaction ID: ' + result.txid);
     console.log('RPC node URL: ' + result.nodeURL);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
@@ -1543,6 +1638,10 @@ neolineN3.send({
             break;
         case 'INSUFFICIENT_FUNDS':
             console.log('The user has insufficient funds to execute this transaction.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1676,6 +1775,10 @@ neolineN3.invoke({
         {
             type: "Integer",
             value: "1",
+        },
+        {
+            type: "Any",
+            value: null,
         }
     ],
     fee: '0.0001',
@@ -1692,7 +1795,8 @@ neolineN3.invoke({
     console.log('Transaction ID: ' + result.txid);
     console.log('RPC node URL: ' + result.nodeURL);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
@@ -1702,6 +1806,10 @@ neolineN3.invoke({
             break;
         case 'CANCELED':
             console.log('The user has canceled this transaction.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1919,16 +2027,21 @@ neolineN3.invokeMultiple({
     console.log('Transaction ID: ' + txid);
     console.log('RPC node URL: ' + nodeURL);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
-        case NO_PROVIDER:
+        case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
-        case RPC_ERROR:
+        case 'RPC_ERROR':
             console.log('There was an error when broadcasting this transaction to the network.');
             break;
-        case CANCELED:
+        case 'CANCELED':
             console.log('The user has canceled this transaction.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -1944,7 +2057,9 @@ neolineN3.invokeMultiple({
         <section id="signMessage" class="content-item">
             <div class="overview">
                 <h4>signMessage</h4>
-                <p>Signs a provided messaged with an account selected by user. A randomized salt prefix is added to the input string before it is signed, and it is encased in a non-executable transaction before signed. This ensures allow compatibility with Ledger devices.</p>
+                <p>Signs a provided messaged with an account selected by user. A randomized salt prefix is added to the
+                    input string before it is signed, and it is encased in a non-executable transaction before signed.
+                    This ensures compatibility with Ledger devices.</p>
                 <h5>Input Arguments</h5>
                 <table>
                     <thead>
@@ -2029,11 +2144,16 @@ neolineN3.signMessage({
   console.log('Salt added to message:', salt);
   console.log('Signed data:', data);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+  const {type, description, data} = error;
   switch(type) {
-    case UNKNOWN_ERROR:
-      console.log(description);
-      break;
+    case 'UNKNOWN_ERROR':
+        console.log(description);
+        break;
+    default:
+        // Not an expected error object.  Just write the error to the console.
+        console.error(error);
+        break;
   }
 });
 
@@ -2050,7 +2170,8 @@ neolineN3.signMessage({
         <section id="commonExample" class="content-item">
             <div class="overview">
                 <h4>Example</h4>
-                <p>Please instantiate it before calling the Neo2 and N3 common methods, See the example for details.</p>
+                <p>Please instantiate it before calling the common methods and common events of Neo2 and N3. See the
+                    example for details.</p>
             </div>
             <div class="examples">
                 <pre><code class="language-js">
@@ -2163,7 +2284,8 @@ neoline.getNetworks()
     console.log('Default network: ' + defaultNetwork);
     // eg. "N3TestNet"
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
@@ -2173,6 +2295,10 @@ neoline.getNetworks()
             break;
         case 'CHAIN_NOT_MATCH':
             console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -2247,7 +2373,8 @@ neoline.getAccount()
     console.log('Provider address: ' + address);
     console.log('Provider account label (Optional): ' + label);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
@@ -2257,6 +2384,10 @@ neoline.getAccount()
             break;
         case 'CHAIN_NOT_MATCH':
             console.log('The currently opened chain does not match the type of the call chain, please switch the chain.');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -2330,13 +2461,18 @@ neoline.getPublicKey()
     console.log('Account address: ' + address);
     console.log('Account public key: ' + publicKey);
 })
-.catch(({type: string, description: string, data: any}) => {
+.catch((error) => {
+    const {type, description, data} = error;
     switch(type) {
         case 'NO_PROVIDER':
             console.log('No provider available.');
             break;
         case 'CONNECTION_DENIED':
             console.log('The user rejected the request to connect with your dApp');
+            break;
+        default:
+            // Not an expected error object.  Just write the error to the console.
+            console.error(error);
             break;
     }
 });
@@ -2387,6 +2523,13 @@ neoline.getPublicKey()
                     </tbody>
                 </table>
             </div>
+            <div class="examples">
+                <pre><code class="language-js">/* Example */
+window.addEventListener('NEOLine.NEO.EVENT.READY', () => {
+    console.log('dAPI common method loading is complete.');
+});
+                </code></pre>
+            </div>
         </section>
         <section id="ACCOUNT_CHANGED" class="content-item">
             <div class="overview">
@@ -2412,6 +2555,18 @@ neoline.getPublicKey()
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">
+/* Example */
+neoline.addEventListener(neoline.EVENT.ACCOUNT_CHANGED, (result) => {
+    console.log('account changed:', result);
+});
+/* Another */
+window.addEventListener('NEOLine.NEO.EVENT.ACCOUNT_CHANGED', (result) => {
+    console.log('account changed:', result.detail);
+});
+                </code></pre>
             </div>
         </section>
         <section id="CONNECTED" class="content-item">
@@ -2440,12 +2595,36 @@ neoline.getPublicKey()
                     </tbody>
                 </table>
             </div>
+            <div class="examples">
+                <pre><code class="language-js">
+/* Example */
+neoline.addEventListener(neoline.EVENT.CONNECTED, (result) => {
+    console.log('connected account:', result);
+});
+/* Another */
+window.addEventListener('NEOLine.NEO.EVENT.CONNECTED', (result) => {
+    console.log('connected account:', result.detail);
+});
+                </code></pre>
+            </div>
         </section>
         <section id="DISCONNECTED" class="content-item">
             <div class="overview">
                 <h4>DISCONNECTED</h4>
                 <p>On a DISCONNECTED event, the account connected to the dapp via the dapi provider has been
                     disconnected (logged out).</p>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">
+/* Example */
+neoline.addEventListener(neoline.EVENT.DISCONNECTED, () => {
+    console.log('dAPI public method loading is complete.');
+});
+/* Another */
+window.addEventListener('NEOLine.NEO.EVENT.DISCONNECTED', () => {
+    console.log('dAPI public method loading is complete.');
+});
+                </code></pre>
             </div>
         </section>
         <section id="NETWORK_CHANGED" class="content-item">
@@ -2476,6 +2655,18 @@ neoline.getPublicKey()
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="examples">
+                <pre><code class="language-js">
+/* Example */
+neoline.addEventListener(neoline.EVENT.NETWORK_CHANGED, (result) => {
+    console.log('network:', result);
+});
+/* Another */
+window.addEventListener('NEOLine.NEO.EVENT.NETWORK_CHANGED', (result) => {
+    console.log('network:', result.detail);
+});
+                </code></pre>
             </div>
         </section>
         <section id="BLOCK_HEIGHT_CHANGED" class="content-item">
@@ -2513,6 +2704,18 @@ neoline.getPublicKey()
                     </tbody>
                 </table>
             </div>
+            <div class="examples">
+                <pre><code class="language-js">
+/* Example */
+neoline.addEventListener(neoline.EVENT.BLOCK_HEIGHT_CHANGED, (result) => {
+    console.log('block height:', result);
+});
+/* Another */
+window.addEventListener('NEOLine.NEO.EVENT.BLOCK_HEIGHT_CHANGED', (result) => {
+    console.log('block height:', result.detail);
+});
+                </code></pre>
+            </div>
         </section>
         <section id="TRANSACTION_CONFIRMED" class="content-item">
             <div class="overview">
@@ -2546,6 +2749,18 @@ neoline.getPublicKey()
                     </tbody>
                 </table>
             </div>
+            <div class="examples">
+                <pre><code class="language-js">
+/* Example */
+neoline.addEventListener(neoline.EVENT.TRANSACTION_CONFIRMED, (result) => {
+    console.log('Transaction confirmation detail:', result);
+});
+/* Another */
+window.addEventListener('NEOLine.NEO.EVENT.TRANSACTION_CONFIRMED', (result) => {
+    console.log('Transaction confirmation detail:', result.detail);
+});
+                </code></pre>
+            </div>
         </section>
         <section id="addEventListener" class="content-item">
             <div class="overview">
@@ -2562,7 +2777,7 @@ neoline.addEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
 const fn = (data) => {
     console.log(`Connected Account: $&#123;data.detail.address&#125;`);
 }
-window.addEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn) ;
+window.addEventListener('NEOLine.NEO.EVENT.ACCOUNT_CHANGED', fn) ;
                 </code></pre>
             </div>
         </section>
@@ -2575,7 +2790,7 @@ window.addEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn) ;
                 <pre><code class="language-js">/* Example */
 neoline.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
 /* Another */
-window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
+window.removeEventListener('NEOLine.NEO.EVENT.ACCOUNT_CHANGED', fn);
 
                 </code></pre>
             </div>
@@ -2659,6 +2874,8 @@ window.removeEventListener(neoline.EVENT.ACCOUNT_CHANGED, fn);
                     <a href="#getBlock">getBlock</a>
                     <a href="#getTransaction">getTransaction</a>
                     <a href="#getApplicationLog">getApplicationLog</a>
+                    <a href="#addressToScriptHash">AddressToScriptHash</a>
+                    <a href="#scriptHashToAddress">ScriptHashToAddress</a>
                 </div>
             </section>
             <section class="aside-item">
